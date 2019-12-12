@@ -56,7 +56,7 @@ static int read(void * _self) {
  */
 static int hasNextToken(void * _self) {
     int result = 0;
-    
+
     struct Source * self = _self;
 
     size_t newOffset = self->offset;
@@ -145,9 +145,15 @@ static void matchToken(void * _self, char * token) {
 
 static void build(void * _self) {
     struct Source * self = _self;
-    
+
     self->body = new(Body);
     self->body->build(self->body, self);
+}
+
+static void * run(void * _self) {
+    struct Source * self = _self;
+
+    return self->body->run(self->body);
 }
 
 static void * constructor(void * _self, va_list * params) {
@@ -162,6 +168,7 @@ static void * constructor(void * _self, va_list * params) {
     self->popNextToken = popNextToken;
     self->matchToken = matchToken;
     self->build = build;
+    self->run = run;
 
     return self;
 }

@@ -25,6 +25,8 @@ int main(int param_count, char ** params) {
             source->read(source);
             printf("Build source:\n%s\n", source->value);
             source->build(source);
+            printf("Run:\n");
+            source->run(source);
         }
     }
 }

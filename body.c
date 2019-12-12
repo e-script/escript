@@ -16,10 +16,25 @@ static void build(void * _self, void * _source) {
     }
 }
 
+static void * run(void * _self) {
+    struct Body * self = _self;
+    struct Operand * operand;
+
+    int i;
+    for (i = 0; i < self->operands->size; i++) {
+        operand = self->operands->get(self->operands, i);
+        operand->run(operand);
+        printf("\n");
+    }
+
+    return NULL;
+}
+
 static void * constructor(void * _self, va_list * params) {
     struct Body * self = _self;
 
     self->build = build;
+    self->run = run;
 
     return self;
 }

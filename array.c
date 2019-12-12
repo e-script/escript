@@ -27,6 +27,17 @@ static int append(void * _self, void * element) {
     return result;
 }
 
+static void * get(void * _self, size_t index) {
+    void * result = NULL;
+
+    struct Array * self = _self;
+    if (index >= 0 && index < self->size) {
+        result = self->elements[index];
+    }
+
+    return result;
+}
+
 static void * constructor(void * _self, va_list * params) {
     struct Array * self = _self;
 
@@ -35,6 +46,7 @@ static void * constructor(void * _self, va_list * params) {
     self->elements = calloc(sizeof (void *), self->buffer_size);
 
     self->append = append;
+    self->get = get;
 
     return self;
 }

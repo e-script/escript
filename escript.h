@@ -29,6 +29,7 @@ struct Array {
     void ** elements;
 
     int (* append)(void * _self, void * element);
+    void * (* get)(void * _self, size_t index);
 };
 const void * Array;
 
@@ -37,24 +38,26 @@ const void * Array;
  */
 struct Operand {
     const void * class;
+
+    void * (* run)(void * _self);
 };
 
 struct Number {
-    const void * class;
+    struct Operand operand;
 
     int value;
 };
 const void * Number;
 
 struct Reference {
-    const void * class;
+    struct Operand operand;
 
     char * name;
 };
 const void * Reference;
 
 struct Expression {
-    const void * class;
+    struct Operand operand;
 
     struct Array * operands;
     struct Array * operators;
@@ -72,6 +75,7 @@ struct Body {
     struct Array * operands;
 
     void (* build)(void * _self, void * _source);
+    void * (* run)(void * _self);
 };
 const void * Body;
 
@@ -97,6 +101,7 @@ struct Source {
     char * (* popNextToken)(void * _self);
     void (* matchToken)(void * _self, char * token);
     void (* build)(void * _self);
+    void * (* run)(void * _self);
 };
 const void * Source;
 
