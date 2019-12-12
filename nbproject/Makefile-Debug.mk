@@ -37,8 +37,10 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/array.o \
 	${OBJECTDIR}/body.o \
+	${OBJECTDIR}/character.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/oop.o \
+	${OBJECTDIR}/operand.o \
 	${OBJECTDIR}/source.o
 
 # Test Directory
@@ -86,6 +88,11 @@ ${OBJECTDIR}/body.o: body.c
 	${RM} "$@.d"
 	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/body.o body.c
 
+${OBJECTDIR}/character.o: character.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/character.o character.c
+
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -95,6 +102,11 @@ ${OBJECTDIR}/oop.o: oop.c
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/oop.o oop.c
+
+${OBJECTDIR}/operand.o: operand.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operand.o operand.c
 
 ${OBJECTDIR}/source.o: source.c 
 	${MKDIR} -p ${OBJECTDIR}
@@ -145,6 +157,19 @@ ${OBJECTDIR}/body_nomain.o: ${OBJECTDIR}/body.o body.c
 	    ${CP} ${OBJECTDIR}/body.o ${OBJECTDIR}/body_nomain.o;\
 	fi
 
+${OBJECTDIR}/character_nomain.o: ${OBJECTDIR}/character.o character.c 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/character.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -g -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/character_nomain.o character.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/character.o ${OBJECTDIR}/character_nomain.o;\
+	fi
+
 ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/main.o`; \
@@ -169,6 +194,19 @@ ${OBJECTDIR}/oop_nomain.o: ${OBJECTDIR}/oop.o oop.c
 	    $(COMPILE.c) -g -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/oop_nomain.o oop.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/oop.o ${OBJECTDIR}/oop_nomain.o;\
+	fi
+
+${OBJECTDIR}/operand_nomain.o: ${OBJECTDIR}/operand.o operand.c 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/operand.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -g -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operand_nomain.o operand.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/operand.o ${OBJECTDIR}/operand_nomain.o;\
 	fi
 
 ${OBJECTDIR}/source_nomain.o: ${OBJECTDIR}/source.o source.c 

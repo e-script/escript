@@ -23,7 +23,7 @@ int main(int param_count, char ** params) {
         } else {
             printf("Running: %s\n", filepath);
             source->read(source);
-            printf("Source:\n%s\n", source->value);
+            printf("Build source:\n%s\n", source->value);
             source->build(source);
         }
     }

@@ -41,6 +41,7 @@ static int read(void * _self) {
                 fputs("Reading error", stderr);
             } else {
                 self->value[self->length] = 0;
+                self->offset = 0;
                 result = 0;
             }
         }
@@ -50,9 +51,101 @@ static int read(void * _self) {
     return result;
 }
 
-static void build(void * _self) {
+/*
+ Return 1 if success
+ */
+static int hasNextToken(void * _self) {
+    int result = 0;
+    
     struct Source * self = _self;
 
+    size_t newOffset = self->offset;
+    while (newOffset < self->length && get_char_type(self->value[newOffset]) == CHAR_SPACE) {
+        newOffset += 1;
+    }
+    if (newOffset < self->length) {
+        result = 1;
+    }
+
+    return result;
+}
+
+static char * getNextToken(void * _self) {
+    char * result;
+
+    struct Source * self = _self;
+
+    /* skip spaces */
+    size_t startOffset = self->offset;
+    while (startOffset < self->length && get_char_type(self->value[startOffset]) == CHAR_SPACE) {
+        startOffset += 1;
+    }
+    /* check end of source */
+    if (startOffset == self->length) {
+        return NULL;
+    }
+
+    /* detect token */
+    size_t finishOffset = startOffset + 1;
+    while (finishOffset < self->length
+            && get_char_type(self->value[finishOffset]) == get_char_type(self->value[startOffset])) {
+        finishOffset += 1;
+    }
+
+    /* copy token */
+    result = (char *) malloc(finishOffset - startOffset + 1);
+    memcpy(result, &self->value[startOffset], finishOffset - startOffset);
+    result[finishOffset - startOffset + 1] = 0;
+
+    return result;
+}
+
+static char * popNextToken(void * _self) {
+    char * result;
+
+    struct Source * self = _self;
+
+    /* skip spaces */
+    while (self->offset < self->length
+            && get_char_type(self->value[self->offset]) == CHAR_SPACE) {
+        self->offset += 1;
+    }
+    /* check end of source */
+    if (self->offset == self->length) {
+        return NULL;
+    }
+
+    /* detect token */
+    size_t newOffset = self->offset + 1;
+    while (newOffset < self->length
+            && get_char_type(self->value[newOffset]) == get_char_type(self->value[self->offset])) {
+        newOffset += 1;
+    }
+
+    /* copy token */
+    result = (char *) malloc(newOffset - self->offset + 1);
+    memcpy(result, &self->value[self->offset], newOffset - self->offset);
+    result[newOffset - self->offset + 1] = 0;
+
+    /* move offset */
+    self->offset = newOffset;
+
+    return result;
+}
+
+static void matchToken(void * _self, char * token) {
+    struct Source * self = _self;
+
+    if (strcmp(token, self->getNextToken(_self)) != 0) {
+        fputs("%s is required", stderr);
+        return;
+    }
+    self->popNextToken(_self);
+}
+
+static void build(void * _self) {
+    struct Source * self = _self;
+    
     self->body = new(Body);
     self->body->build(self->body, self);
 }
@@ -64,6 +157,10 @@ static void * constructor(void * _self, va_list * params) {
 
     self->checkFileExists = checkFileExists;
     self->read = read;
+    self->hasNextToken = hasNextToken;
+    self->getNextToken = getNextToken;
+    self->popNextToken = popNextToken;
+    self->matchToken = matchToken;
     self->build = build;
 
     return self;

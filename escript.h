@@ -16,6 +16,7 @@
 #include <string.h>
 
 #include "oop.h"
+#include "charaters.h"
 
 /*
  Array
@@ -31,6 +32,36 @@ struct Array {
 };
 const void * Array;
 
+/*
+ Operand
+ */
+struct Operand {
+    const void * class;
+};
+
+struct Number {
+    const void * class;
+
+    int value;
+};
+const void * Number;
+
+struct Reference {
+    const void * class;
+
+    char * name;
+};
+const void * Reference;
+
+struct Expression {
+    const void * class;
+
+    struct Array * operands;
+    struct Array * operators;
+};
+const void * Expression;
+
+void * operand_build(void * _source);
 
 /*
  Body
@@ -55,10 +86,16 @@ struct Source {
     size_t length;
     char * value;
 
+    size_t offset;
+
     struct Body * body;
 
     int (* checkFileExists)(char * filePath);
     int (* read)(void * _self);
+    int (* hasNextToken)(void * _self);
+    char * (* getNextToken)(void * _self);
+    char * (* popNextToken)(void * _self);
+    void (* matchToken)(void * _self, char * token);
     void (* build)(void * _self);
 };
 const void * Source;

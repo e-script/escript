@@ -4,10 +4,16 @@
 static void build(void * _self, void * _source) {
     struct Body * self = _self;
     struct Source * source = _source;
-    
-    printf("build body\n");
-    
+
     self->operands = new(Array);
+
+    while (source->hasNextToken(source)) {
+        struct Operand * operand = operand_build(_source);
+        if (operand == NULL) {
+            break;
+        }
+        self->operands->append(self->operands, operand);
+    }
 }
 
 static void * constructor(void * _self, va_list * params) {
