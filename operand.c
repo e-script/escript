@@ -1,87 +1,40 @@
 #include "escript.h"
 
-static void * Number_run(void * _self) {
-    struct Number * self = _self;
+static void * invoke_build(void * _source, char * name) {
+    void * result = NULL;
 
-    printf("number: %d ", self->value);
+    struct Source * source = _source;
 
-    return NULL;
-}
+    struct Array * operands = new(Array);
+    void * operand;
 
-static void * Number_constructor(void * _self, va_list * params) {
-    struct Number * self = _self;
+#define hasNextToken()(source->hasNextToken(source))
+#define popNextToken()(source->popNextToken(source))
+#define nextTokenType()(get_token_type(source->getNextToken(source)))
+#define nextTokenIs(token)(strcmp(source->getNextToken(source), token) == 0)
+#define matchToken(token)(source->matchToken(source, token))
 
-    self->value = va_arg(*params, int);
-    self->operand.run = Number_run;
-
-    return self;
-}
-
-static const struct Class _Number = {
-    sizeof (struct Number),
-    Number_constructor, 0, 0, 0
-};
-const void * Number = &_Number;
-
-static void * Reference_run(void * _self) {
-    struct Reference * self = _self;
-
-    printf("reference: %s ", self->name);
-
-    return NULL;
-}
-
-static void *Reference_constructor(void * _self, va_list * params) {
-    struct Reference * self = _self;
-
-    self->name = va_arg(*params, char *);
-    self->operand.run = Reference_run;
-
-    return self;
-}
-
-static const struct Class _Reference = {
-    sizeof (struct Reference),
-    Reference_constructor, 0, 0, 0
-};
-const void * Reference = &_Reference;
-
-static void * Expression_run(void * _self) {
-    struct Expression * self = _self;
-
-    struct Operand * operand;
-    char * operator;
-
-    printf("expression: ");
-
-    int i;
-    for (i = 0; i < self->operands->size; i++) {
-        operand = self->operands->get(self->operands, i);
-        operand->run(operand);
-        if (i < self->operators->size) {
-            operator = self->operators->get(self->operators, i);
-            printf("operator: %s ", operator);
+    while (hasNextToken()) {
+        if (nextTokenIs(")")) {
+            result = new(Invoke, name, operands);
+            break;
+        }
+        operand = operand_build(_source);
+        if (operand == NULL) {
+            fputs("')' is expected", stderr);
+            break;
+        }
+        operands->append(operands, operand);
+        if (nextTokenIs(",")) {
+            popNextToken();
+        } else if (!nextTokenIs(")")) {
+            fputs("')' is expected2", stderr);
+            break;
         }
     }
 
-    return NULL;
+    return result;
 }
-
-static void * Expression_constructor(void * _self, va_list * params) {
-    struct Expression * self = _self;
-
-    self->operands = va_arg(*params, struct Array *);
-    self->operators = va_arg(*params, struct Array *);
-    self->operand.run = Expression_run;
-
-    return self;
-}
-
-static const struct Class _Expression = {
-    sizeof (struct Expression),
-    Expression_constructor, 0, 0, 0
-};
-const void * Expression = &_Expression;
 
 void * operand_build(void * _source) {
     void * result = NULL;
@@ -95,8 +48,11 @@ void * operand_build(void * _source) {
 #define hasNextToken()(source->hasNextToken(source))
 #define popNextToken()(source->popNextToken(source))
 #define nextTokenType()(get_token_type(source->getNextToken(source)))
+#define nextTokenIs(token)(strcmp(source->getNextToken(source), token) == 0)
+#define matchToken(token)(source->matchToken(source, token))
 
     int fail = 0;
+    char * name;
 
     while (hasNextToken()) {
         operand = NULL;
@@ -104,7 +60,14 @@ void * operand_build(void * _source) {
         if (nextTokenType() == TOKEN_NUMBER) {
             operand = new(Number, atoi(popNextToken()));
         } else if (nextTokenType() == TOKEN_NAME) {
-            operand = new(Reference, popNextToken());
+            name = popNextToken();
+            if (hasNextToken() && nextTokenIs("(")) {
+                matchToken("(");
+                operand = invoke_build(source, name);
+                matchToken(")");
+            } else {
+                operand = new(Reference, name);
+            }
         }
 
         if (operand == NULL) {

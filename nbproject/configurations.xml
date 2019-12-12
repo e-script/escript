@@ -18,9 +18,13 @@
       <itemPath>array.c</itemPath>
       <itemPath>body.c</itemPath>
       <itemPath>character.c</itemPath>
+      <itemPath>expression.c</itemPath>
+      <itemPath>invoke.c</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>number.c</itemPath>
       <itemPath>oop.c</itemPath>
       <itemPath>operand.c</itemPath>
+      <itemPath>reference.c</itemPath>
       <itemPath>source.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -67,6 +71,8 @@
       </item>
       <item path="escript.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="expression.c" ex="false" tool="0" flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -82,13 +88,19 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <item path="invoke.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="number.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="oop.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="oop.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="operand.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="reference.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="source.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -128,6 +140,8 @@
       </item>
       <item path="escript.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="expression.c" ex="false" tool="0" flavor2="0">
+      </item>
       <folder path="TestFiles/f1">
         <cTool>
           <incDir>
@@ -143,13 +157,19 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <item path="invoke.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="number.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="oop.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="oop.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="operand.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="reference.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="source.c" ex="false" tool="0" flavor2="0">
       </item>

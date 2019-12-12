@@ -64,6 +64,14 @@ struct Expression {
 };
 const void * Expression;
 
+struct Invoke {
+    struct Operand operand;
+
+    char * name;
+    struct Array * operands;
+};
+const void * Invoke;
+
 void * operand_build(void * _source);
 
 /*

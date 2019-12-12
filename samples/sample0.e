@@ -1,3 +1,3 @@
 a = 5 b = 6
-c = 7
-8 = d
+c = add(a + 1, b * 2)
+write(c)
