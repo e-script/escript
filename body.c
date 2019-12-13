@@ -24,7 +24,9 @@ static void * run(void * _self) {
     for (i = 0; i < self->operands->size; i++) {
         operand = self->operands->get(self->operands, i);
         operand->run(operand);
+#ifndef RELEASE
         printf("\n");
+#endif
     }
 
     return NULL;

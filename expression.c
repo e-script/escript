@@ -6,7 +6,9 @@ static void * Expression_run(void * _self) {
     struct Operand * operand;
     char * operator;
 
+#ifndef RELEASE
     printf("expression(");
+#endif
 
     int i;
     for (i = 0; i < self->operands->size; i++) {
@@ -14,11 +16,15 @@ static void * Expression_run(void * _self) {
         operand->run(operand);
         if (i < self->operators->size) {
             operator = self->operators->get(self->operators, i);
-            printf("operator: %s ", operator);
+#ifndef RELEASE
+            printf("operator_%s ", operator);
+#endif
         }
     }
 
-    printf("), ");
+#ifndef RELEASE
+    printf(") ");
+#endif
 
     return NULL;
 }

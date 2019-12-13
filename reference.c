@@ -3,7 +3,9 @@
 static void * Reference_run(void * _self) {
     struct Reference * self = _self;
 
-    printf("reference: %s ", self->name);
+#ifndef RELEASE
+    printf("reference_%s ", self->name);
+#endif
 
     return NULL;
 }

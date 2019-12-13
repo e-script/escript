@@ -21,11 +21,17 @@ int main(int param_count, char ** params) {
         if (source == NULL) {
             fputs("Unable to open source code", stderr);
         } else {
+#ifndef RELEASE
             printf("Running: %s\n", filepath);
+#endif
             source->read(source);
+#ifndef RELEASE
             printf("Build source:\n%s\n", source->value);
+#endif
             source->build(source);
+#ifndef RELEASE
             printf("Run:\n");
+#endif
             source->run(source);
         }
     }

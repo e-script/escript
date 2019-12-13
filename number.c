@@ -3,7 +3,9 @@
 static void * Number_run(void * _self) {
     struct Number * self = _self;
 
-    printf("number: %d ", self->value);
+#ifndef RELEASE
+    printf("number_%d ", self->value);
+#endif
 
     return NULL;
 }

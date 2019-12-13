@@ -5,13 +5,17 @@ static void * run(void * _self) {
 
     struct Operand * operand;
 
-    printf("invoke: %s(", self->name);
+#ifndef RELEASE
+    printf("invoke_%s(", self->name);
+#endif
     int i;
     for (i = 0; i < self->operands->size; i++) {
         operand = self->operands->get(self->operands, i);
         operand->run(operand);
     }
-    printf("), ");
+#ifndef RELEASE
+    printf(") ");
+#endif
 
     return NULL;
 }
