@@ -61,9 +61,9 @@
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
+      <itemPath>LICENSE</itemPath>
+      <itemPath>readme.md</itemPath>
     </logicalFolder>
-    <itemPath>LICENSE</itemPath>
-    <itemPath>readme.md</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>src</Elem>
