@@ -34,3 +34,24 @@ Escript is a scripting language which will support oop but much simpler and has 
 
 * sample1.e
 * sample2.e
+
+## Development
+
+Requirements: GCC compiler
+
+1. Clone git repo:
+
+    `git clone https://github.com/e-script/escript`
+
+2. Make:
+
+    `cd escript`
+    `make CONF=Release`
+
+3. The executable is located at `dist/Release/GNU-linux/`
+
+4. Verbose mode: escript will show code explanation at runtime
+
+    `make CONF=Verbose`
+
+> This project is originally developed via Netbeans version 8.1
