@@ -7,7 +7,7 @@ Escript is a scripting language which will support oop but much simpler and has 
 * Linux 64-bit
 
 ## Installation
-1. Download latest release at here: [Releases](https://github.com/chientranse/escript/releases)
+1. Download latest release at here: [Releases](https://github.com/e-script/escript/releases)
 2. Extract:
 
     `tar -xzvf escript-v0.0.11.tar.gz`
