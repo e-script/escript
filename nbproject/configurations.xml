@@ -56,6 +56,7 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
+    <itemPath>readme.md</itemPath>
   </logicalFolder>
   <sourceRootList>
     <Elem>docs</Elem>
@@ -120,6 +121,8 @@
       <item path="operand.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="operator.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="readme.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="reference.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -203,6 +206,8 @@
       <item path="operand.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="operator.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="readme.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="reference.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -289,6 +294,8 @@
       <item path="operand.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="operator.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="readme.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="reference.c" ex="false" tool="0" flavor2="0">
       </item>
