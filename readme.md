@@ -46,6 +46,7 @@ Requirements: GCC compiler
 2. Make:
 
     `cd escript`
+
     `make CONF=Release`
 
 3. The executable is located at `dist/Release/GNU-linux/`
