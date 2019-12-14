@@ -1,26 +1,26 @@
 #include "escript.h"
 
-static void * Number_run(void * _self) {
+static void * run(void * _self, void * _context) {
     struct Number * self = _self;
 
-#ifndef RELEASE
+#ifdef VERBOSE
     printf("number_%d ", self->value);
 #endif
 
-    return NULL;
+    return new(NumberValue, self->value);
 }
 
-static void * Number_constructor(void * _self, va_list * params) {
+static void * constructor(void * _self, va_list * params) {
     struct Number * self = _self;
 
     self->value = va_arg(*params, int);
-    self->operand.run = Number_run;
+    self->parent.run = run;
 
     return self;
 }
 
 static const struct Class _Number = {
     sizeof (struct Number),
-    Number_constructor, 0, 0, 0
+    constructor, 0, 0, 0
 };
 const void * Number = &_Number;

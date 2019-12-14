@@ -23,7 +23,7 @@ AS=as
 # Macros
 CND_PLATFORM=GNU-Linux
 CND_DLIB_EXT=so
-CND_CONF=Release
+CND_CONF=Verbose
 CND_DISTDIR=dist
 CND_BUILDDIR=build
 
@@ -89,77 +89,77 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/escript: ${OBJECTFILES}
 ${OBJECTDIR}/array.o: array.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/array.o array.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/array.o array.c
 
 ${OBJECTDIR}/body.o: body.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/body.o body.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/body.o body.c
 
 ${OBJECTDIR}/character.o: character.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/character.o character.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/character.o character.c
 
 ${OBJECTDIR}/expression.o: expression.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/expression.o expression.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/expression.o expression.c
 
 ${OBJECTDIR}/hash.o: hash.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hash.o hash.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hash.o hash.c
 
 ${OBJECTDIR}/invoke.o: invoke.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/invoke.o invoke.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/invoke.o invoke.c
 
 ${OBJECTDIR}/main.o: main.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
 
 ${OBJECTDIR}/number.o: number.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number.o number.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number.o number.c
 
 ${OBJECTDIR}/number_value.o: number_value.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_value.o number_value.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_value.o number_value.c
 
 ${OBJECTDIR}/oop.o: oop.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/oop.o oop.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/oop.o oop.c
 
 ${OBJECTDIR}/operand.o: operand.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operand.o operand.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operand.o operand.c
 
 ${OBJECTDIR}/operator.o: operator.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operator.o operator.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operator.o operator.c
 
 ${OBJECTDIR}/reference.o: reference.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/reference.o reference.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/reference.o reference.c
 
 ${OBJECTDIR}/set.o: set.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/set.o set.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/set.o set.c
 
 ${OBJECTDIR}/source.o: source.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source.o source.c
+	$(COMPILE.c) -O2 -DVERBOSE -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source.o source.c
 
 # Subprojects
 .build-subprojects:
@@ -176,7 +176,7 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/test_array.o ${OBJECTFILES:%.o=%_nomai
 ${TESTDIR}/tests/test_array.o: tests/test_array.c 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -I. -std=c89 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/test_array.o tests/test_array.c
+	$(COMPILE.c) -O2 -DVERBOSE -I. -std=c89 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/test_array.o tests/test_array.c
 
 
 ${OBJECTDIR}/array_nomain.o: ${OBJECTDIR}/array.o array.c 
@@ -187,7 +187,7 @@ ${OBJECTDIR}/array_nomain.o: ${OBJECTDIR}/array.o array.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/array_nomain.o array.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/array_nomain.o array.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/array.o ${OBJECTDIR}/array_nomain.o;\
 	fi
@@ -200,7 +200,7 @@ ${OBJECTDIR}/body_nomain.o: ${OBJECTDIR}/body.o body.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/body_nomain.o body.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/body_nomain.o body.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/body.o ${OBJECTDIR}/body_nomain.o;\
 	fi
@@ -213,7 +213,7 @@ ${OBJECTDIR}/character_nomain.o: ${OBJECTDIR}/character.o character.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/character_nomain.o character.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/character_nomain.o character.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/character.o ${OBJECTDIR}/character_nomain.o;\
 	fi
@@ -226,7 +226,7 @@ ${OBJECTDIR}/expression_nomain.o: ${OBJECTDIR}/expression.o expression.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/expression_nomain.o expression.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/expression_nomain.o expression.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/expression.o ${OBJECTDIR}/expression_nomain.o;\
 	fi
@@ -239,7 +239,7 @@ ${OBJECTDIR}/hash_nomain.o: ${OBJECTDIR}/hash.o hash.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hash_nomain.o hash.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hash_nomain.o hash.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/hash.o ${OBJECTDIR}/hash_nomain.o;\
 	fi
@@ -252,7 +252,7 @@ ${OBJECTDIR}/invoke_nomain.o: ${OBJECTDIR}/invoke.o invoke.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/invoke_nomain.o invoke.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/invoke_nomain.o invoke.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/invoke.o ${OBJECTDIR}/invoke_nomain.o;\
 	fi
@@ -265,7 +265,7 @@ ${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main_nomain.o main.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main_nomain.o main.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/main.o ${OBJECTDIR}/main_nomain.o;\
 	fi
@@ -278,7 +278,7 @@ ${OBJECTDIR}/number_nomain.o: ${OBJECTDIR}/number.o number.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_nomain.o number.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_nomain.o number.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/number.o ${OBJECTDIR}/number_nomain.o;\
 	fi
@@ -291,7 +291,7 @@ ${OBJECTDIR}/number_value_nomain.o: ${OBJECTDIR}/number_value.o number_value.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_value_nomain.o number_value.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_value_nomain.o number_value.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/number_value.o ${OBJECTDIR}/number_value_nomain.o;\
 	fi
@@ -304,7 +304,7 @@ ${OBJECTDIR}/oop_nomain.o: ${OBJECTDIR}/oop.o oop.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/oop_nomain.o oop.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/oop_nomain.o oop.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/oop.o ${OBJECTDIR}/oop_nomain.o;\
 	fi
@@ -317,7 +317,7 @@ ${OBJECTDIR}/operand_nomain.o: ${OBJECTDIR}/operand.o operand.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operand_nomain.o operand.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operand_nomain.o operand.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/operand.o ${OBJECTDIR}/operand_nomain.o;\
 	fi
@@ -330,7 +330,7 @@ ${OBJECTDIR}/operator_nomain.o: ${OBJECTDIR}/operator.o operator.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operator_nomain.o operator.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operator_nomain.o operator.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/operator.o ${OBJECTDIR}/operator_nomain.o;\
 	fi
@@ -343,7 +343,7 @@ ${OBJECTDIR}/reference_nomain.o: ${OBJECTDIR}/reference.o reference.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/reference_nomain.o reference.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/reference_nomain.o reference.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/reference.o ${OBJECTDIR}/reference_nomain.o;\
 	fi
@@ -356,7 +356,7 @@ ${OBJECTDIR}/set_nomain.o: ${OBJECTDIR}/set.o set.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/set_nomain.o set.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/set_nomain.o set.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/set.o ${OBJECTDIR}/set_nomain.o;\
 	fi
@@ -369,7 +369,7 @@ ${OBJECTDIR}/source_nomain.o: ${OBJECTDIR}/source.o source.c
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source_nomain.o source.c;\
+	    $(COMPILE.c) -O2 -DVERBOSE -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source_nomain.o source.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/source.o ${OBJECTDIR}/source_nomain.o;\
 	fi

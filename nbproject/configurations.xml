@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configurationDescriptor version="97">
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
+    <logicalFolder name="docs" displayName="docs" projectFiles="true">
+      <itemPath>docs/sources.md</itemPath>
+    </logicalFolder>
     <logicalFolder name="HeaderFiles"
                    displayName="Header Files"
                    projectFiles="true">
@@ -12,6 +15,11 @@
                    displayName="Resource Files"
                    projectFiles="true">
     </logicalFolder>
+    <logicalFolder name="samples" displayName="samples" projectFiles="true">
+      <itemPath>samples/sample0.e</itemPath>
+      <itemPath>samples/sample1.e</itemPath>
+      <itemPath>samples/sample2.e</itemPath>
+    </logicalFolder>
     <logicalFolder name="SourceFiles"
                    displayName="Source Files"
                    projectFiles="true">
@@ -19,12 +27,16 @@
       <itemPath>body.c</itemPath>
       <itemPath>character.c</itemPath>
       <itemPath>expression.c</itemPath>
+      <itemPath>hash.c</itemPath>
       <itemPath>invoke.c</itemPath>
       <itemPath>main.c</itemPath>
       <itemPath>number.c</itemPath>
+      <itemPath>number_value.c</itemPath>
       <itemPath>oop.c</itemPath>
       <itemPath>operand.c</itemPath>
+      <itemPath>operator.c</itemPath>
       <itemPath>reference.c</itemPath>
+      <itemPath>set.c</itemPath>
       <itemPath>source.c</itemPath>
     </logicalFolder>
     <logicalFolder name="TestFiles"
@@ -44,8 +56,11 @@
                    kind="IMPORTANT_FILES_FOLDER">
       <itemPath>Makefile</itemPath>
     </logicalFolder>
-    <itemPath>Samples/sample0.e</itemPath>
   </logicalFolder>
+  <sourceRootList>
+    <Elem>docs</Elem>
+    <Elem>samples</Elem>
+  </sourceRootList>
   <projectmakefile>Makefile</projectmakefile>
   <confs>
     <conf name="Debug" type="1">
@@ -59,8 +74,6 @@
           <standard>2</standard>
         </cTool>
       </compileType>
-      <item path="Samples/sample0.e" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="array.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="body.c" ex="false" tool="0" flavor2="0">
@@ -68,6 +81,8 @@
       <item path="character.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="charaters.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="escript.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -88,11 +103,15 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <item path="hash.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="invoke.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="number.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="number_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="oop.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -100,7 +119,17 @@
       </item>
       <item path="operand.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="operator.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="reference.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="samples/sample0.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="samples/sample1.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="samples/sample2.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="set.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="source.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -128,8 +157,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="Samples/sample0.e" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="array.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="body.c" ex="false" tool="0" flavor2="0">
@@ -137,6 +164,8 @@
       <item path="character.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="charaters.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="escript.h" ex="false" tool="3" flavor2="0">
       </item>
@@ -157,11 +186,15 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <item path="hash.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="invoke.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="main.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="number.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="number_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="oop.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -169,7 +202,103 @@
       </item>
       <item path="operand.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="operator.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="reference.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="samples/sample0.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="samples/sample1.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="samples/sample2.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="set.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="source.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="tests/test_array.c" ex="false" tool="0" flavor2="0">
+      </item>
+    </conf>
+    <conf name="Verbose" type="1">
+      <toolsSet>
+        <compilerSet>default</compilerSet>
+        <dependencyChecking>true</dependencyChecking>
+        <rebuildPropChanged>false</rebuildPropChanged>
+      </toolsSet>
+      <compileType>
+        <cTool>
+          <developmentMode>5</developmentMode>
+          <standard>2</standard>
+          <preprocessorList>
+            <Elem>VERBOSE</Elem>
+          </preprocessorList>
+        </cTool>
+        <ccTool>
+          <developmentMode>5</developmentMode>
+        </ccTool>
+        <fortranCompilerTool>
+          <developmentMode>5</developmentMode>
+        </fortranCompilerTool>
+        <asmTool>
+          <developmentMode>5</developmentMode>
+        </asmTool>
+      </compileType>
+      <item path="array.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="body.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="character.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="charaters.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="escript.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="expression.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <folder path="TestFiles/f1">
+        <cTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </cTool>
+        <ccTool>
+          <incDir>
+            <pElem>.</pElem>
+          </incDir>
+        </ccTool>
+        <linkerTool>
+          <output>${TESTDIR}/TestFiles/f1</output>
+        </linkerTool>
+      </folder>
+      <item path="hash.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="invoke.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="main.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="number.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="number_value.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="oop.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="oop.h" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="operand.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="operator.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="reference.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="samples/sample0.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="samples/sample1.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="samples/sample2.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="set.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="source.c" ex="false" tool="0" flavor2="0">
       </item>

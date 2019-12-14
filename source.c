@@ -24,6 +24,7 @@ static int read(void * _self) {
 
     if (file == NULL) {
         fputs("File error", stderr);
+        exit(-1);
     } else {
         /* get file size */
         fseek(file, 0, SEEK_END);
@@ -34,11 +35,13 @@ static int read(void * _self) {
         self->value = (char *) malloc(sizeof (char) * self->length + 1);
         if (self->value == NULL) {
             fputs("Memory error", stderr);
+            exit(-1);
         } else {
             /* read file to memory */
             count = fread(self->value, 1, self->length, file);
             if (count != self->length) {
                 fputs("Reading error", stderr);
+                exit(-1);
             } else {
                 self->value[self->length] = 0;
                 self->offset = 0;
@@ -137,8 +140,8 @@ static void matchToken(void * _self, char * token) {
     struct Source * self = _self;
 
     if (strcmp(token, self->getNextToken(_self)) != 0) {
-        fputs("%s is required", stderr);
-        return;
+        fputs("token is required", stderr);
+        exit(-1);
     }
     self->popNextToken(_self);
 }
@@ -150,10 +153,10 @@ static void build(void * _self) {
     self->body->build(self->body, self);
 }
 
-static void * run(void * _self) {
+static void * run(void * _self, void * _context) {
     struct Source * self = _self;
-
-    return self->body->run(self->body);
+    
+    return self->body->run(self->body, _context);
 }
 
 static void * constructor(void * _self, va_list * params) {

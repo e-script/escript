@@ -1,26 +1,37 @@
 #include "escript.h"
 
-static void * Reference_run(void * _self) {
+static void * run(void * _self, void * _context) {
+    void * result = NULL;
+
     struct Reference * self = _self;
 
-#ifndef RELEASE
+    struct Hash * context = _context;
+
+#ifdef VERBOSE
     printf("reference_%s ", self->name);
 #endif
+    result = context->get(context, self->name);
 
-    return NULL;
+    if (result == NULL) {
+        fputs("unknown_reference", stderr);
+        exit(-1);
+    }
+
+    return result;
 }
 
-static void *Reference_constructor(void * _self, va_list * params) {
+static void *constructor(void * _self, va_list * params) {
     struct Reference * self = _self;
 
     self->name = va_arg(*params, char *);
-    self->operand.run = Reference_run;
+    self->first = 0;
+    self->parent.run = run;
 
     return self;
 }
 
 static const struct Class _Reference = {
     sizeof (struct Reference),
-    Reference_constructor, 0, 0, 0
+    constructor, 0, 0, 0
 };
 const void * Reference = &_Reference;

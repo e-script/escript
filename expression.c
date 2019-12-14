@@ -1,46 +1,62 @@
 #include "escript.h"
 
-static void * Expression_run(void * _self) {
+static void * run(void * _self, void * _context) {
+    void * result = NULL;
+
     struct Expression * self = _self;
 
     struct Operand * operand;
-    char * operator;
+    char * operator = NULL;
 
-#ifndef RELEASE
+    void * operand_result;
+
+#ifdef VERBOSE
     printf("expression(");
 #endif
 
     int i;
-    for (i = 0; i < self->operands->size; i++) {
+    for (i = self->operands->size - 1; i >= 0; i--) {
         operand = self->operands->get(self->operands, i);
-        operand->run(operand);
-        if (i < self->operators->size) {
-            operator = self->operators->get(self->operators, i);
-#ifndef RELEASE
+        if (operator != NULL) {
+            if (strcmp(operator, "=") == 0) {
+                result = assign(operand, operator, result, _context);
+            } else {
+                operand_result = operand->run(operand, _context);
+                result = operate(operand_result, operator, result);
+            }
+        } else {
+            operand_result = operand->run(operand, _context);
+            result = operand_result;
+        }
+        if (i > 0) {
+            operator = self->operators->get(self->operators, i - 1);
+#ifdef VERBOSE
             printf("operator_%s ", operator);
 #endif
+        } else {
+            operator = NULL;
         }
     }
 
-#ifndef RELEASE
+#ifdef VERBOSE
     printf(") ");
 #endif
 
-    return NULL;
+    return result;
 }
 
-static void * Expression_constructor(void * _self, va_list * params) {
+static void * constructor(void * _self, va_list * params) {
     struct Expression * self = _self;
 
     self->operands = va_arg(*params, struct Array *);
     self->operators = va_arg(*params, struct Array *);
-    self->operand.run = Expression_run;
+    self->parent.run = run;
 
     return self;
 }
 
 static const struct Class _Expression = {
     sizeof (struct Expression),
-    Expression_constructor, 0, 0, 0
+    constructor, 0, 0, 0
 };
 const void * Expression = &_Expression;

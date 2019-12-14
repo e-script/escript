@@ -38,6 +38,19 @@ static void * get(void * _self, size_t index) {
     return result;
 }
 
+static void * pop(void * _self) {
+    struct Array * self = _self;
+
+    void * result = get(_self, self->size - 1);
+
+    if (result != NULL) {
+        self->elements[self->size - 1] = NULL;
+        self->size -= 1;
+    }
+
+    return result;
+}
+
 static void * constructor(void * _self, va_list * params) {
     struct Array * self = _self;
 
@@ -47,6 +60,7 @@ static void * constructor(void * _self, va_list * params) {
 
     self->append = append;
     self->get = get;
+    self->pop = pop;
 
     return self;
 }

@@ -39,12 +39,16 @@ OBJECTFILES= \
 	${OBJECTDIR}/body.o \
 	${OBJECTDIR}/character.o \
 	${OBJECTDIR}/expression.o \
+	${OBJECTDIR}/hash.o \
 	${OBJECTDIR}/invoke.o \
 	${OBJECTDIR}/main.o \
 	${OBJECTDIR}/number.o \
+	${OBJECTDIR}/number_value.o \
 	${OBJECTDIR}/oop.o \
 	${OBJECTDIR}/operand.o \
+	${OBJECTDIR}/operator.o \
 	${OBJECTDIR}/reference.o \
+	${OBJECTDIR}/set.o \
 	${OBJECTDIR}/source.o
 
 # Test Directory
@@ -102,6 +106,11 @@ ${OBJECTDIR}/expression.o: expression.c
 	${RM} "$@.d"
 	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/expression.o expression.c
 
+${OBJECTDIR}/hash.o: hash.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hash.o hash.c
+
 ${OBJECTDIR}/invoke.o: invoke.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -117,6 +126,11 @@ ${OBJECTDIR}/number.o: number.c
 	${RM} "$@.d"
 	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number.o number.c
 
+${OBJECTDIR}/number_value.o: number_value.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_value.o number_value.c
+
 ${OBJECTDIR}/oop.o: oop.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
@@ -127,10 +141,20 @@ ${OBJECTDIR}/operand.o: operand.c
 	${RM} "$@.d"
 	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operand.o operand.c
 
+${OBJECTDIR}/operator.o: operator.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operator.o operator.c
+
 ${OBJECTDIR}/reference.o: reference.c 
 	${MKDIR} -p ${OBJECTDIR}
 	${RM} "$@.d"
 	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/reference.o reference.c
+
+${OBJECTDIR}/set.o: set.c 
+	${MKDIR} -p ${OBJECTDIR}
+	${RM} "$@.d"
+	$(COMPILE.c) -g -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/set.o set.c
 
 ${OBJECTDIR}/source.o: source.c 
 	${MKDIR} -p ${OBJECTDIR}
@@ -207,6 +231,19 @@ ${OBJECTDIR}/expression_nomain.o: ${OBJECTDIR}/expression.o expression.c
 	    ${CP} ${OBJECTDIR}/expression.o ${OBJECTDIR}/expression_nomain.o;\
 	fi
 
+${OBJECTDIR}/hash_nomain.o: ${OBJECTDIR}/hash.o hash.c 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/hash.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -g -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hash_nomain.o hash.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/hash.o ${OBJECTDIR}/hash_nomain.o;\
+	fi
+
 ${OBJECTDIR}/invoke_nomain.o: ${OBJECTDIR}/invoke.o invoke.c 
 	${MKDIR} -p ${OBJECTDIR}
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/invoke.o`; \
@@ -246,6 +283,19 @@ ${OBJECTDIR}/number_nomain.o: ${OBJECTDIR}/number.o number.c
 	    ${CP} ${OBJECTDIR}/number.o ${OBJECTDIR}/number_nomain.o;\
 	fi
 
+${OBJECTDIR}/number_value_nomain.o: ${OBJECTDIR}/number_value.o number_value.c 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/number_value.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -g -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_value_nomain.o number_value.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/number_value.o ${OBJECTDIR}/number_value_nomain.o;\
+	fi
+
 ${OBJECTDIR}/oop_nomain.o: ${OBJECTDIR}/oop.o oop.c 
 	${MKDIR} -p ${OBJECTDIR}
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/oop.o`; \
@@ -272,6 +322,19 @@ ${OBJECTDIR}/operand_nomain.o: ${OBJECTDIR}/operand.o operand.c
 	    ${CP} ${OBJECTDIR}/operand.o ${OBJECTDIR}/operand_nomain.o;\
 	fi
 
+${OBJECTDIR}/operator_nomain.o: ${OBJECTDIR}/operator.o operator.c 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/operator.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -g -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operator_nomain.o operator.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/operator.o ${OBJECTDIR}/operator_nomain.o;\
+	fi
+
 ${OBJECTDIR}/reference_nomain.o: ${OBJECTDIR}/reference.o reference.c 
 	${MKDIR} -p ${OBJECTDIR}
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/reference.o`; \
@@ -283,6 +346,19 @@ ${OBJECTDIR}/reference_nomain.o: ${OBJECTDIR}/reference.o reference.c
 	    $(COMPILE.c) -g -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/reference_nomain.o reference.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/reference.o ${OBJECTDIR}/reference_nomain.o;\
+	fi
+
+${OBJECTDIR}/set_nomain.o: ${OBJECTDIR}/set.o set.c 
+	${MKDIR} -p ${OBJECTDIR}
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/set.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -g -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/set_nomain.o set.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/set.o ${OBJECTDIR}/set_nomain.o;\
 	fi
 
 ${OBJECTDIR}/source_nomain.o: ${OBJECTDIR}/source.o source.c 

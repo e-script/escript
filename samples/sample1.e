@@ -1,18 +1,19 @@
-a = 5
-b = 6
-add = (a, b) {
-    result = a + b
+{ if } = escript
+
+min = (a, b) {
+    result = if(a < b, a, b)
 }
 
-Animal = {
-    name = string,
-    weight = float,
-    shout = () {
-        write('Hello World\n');
-    }
+min2 = (a, b) {
+    result = if(() {
+            result = a < b
+        }, () {
+            result = a
+        }, () {
+            result = b
+        })
 }
 
 result = {
-    add,
-    Animal
+    min, min2
 }

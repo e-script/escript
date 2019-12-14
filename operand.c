@@ -1,5 +1,39 @@
 #include "escript.h"
 
+static void * set_build(void * _source) {
+    void * result = NULL;
+
+    struct Source * source = _source;
+
+    struct Array * names = new(Array);
+
+#define hasNextToken()(source->hasNextToken(source))
+#define popNextToken()(source->popNextToken(source))
+#define nextTokenType()(get_token_type(source->getNextToken(source)))
+#define nextTokenIs(token)(strcmp(source->getNextToken(source), token) == 0)
+#define matchToken(token)(source->matchToken(source, token))
+
+    matchToken("{");
+
+    while (hasNextToken()) {
+        if (nextTokenIs("}")) {
+            result = new(Set, names);
+            break;
+        }
+        names->append(names, popNextToken());
+        if (nextTokenIs(",")) {
+            popNextToken();
+        } else if (!nextTokenIs("}")) {
+            fputs("'}' is expected", stderr);
+            exit(-1);
+        }
+    }
+
+    matchToken("}");
+
+    return result;
+}
+
 static void * invoke_build(void * _source, char * name) {
     void * result = NULL;
 
@@ -14,6 +48,8 @@ static void * invoke_build(void * _source, char * name) {
 #define nextTokenIs(token)(strcmp(source->getNextToken(source), token) == 0)
 #define matchToken(token)(source->matchToken(source, token))
 
+    matchToken("(");
+
     while (hasNextToken()) {
         if (nextTokenIs(")")) {
             result = new(Invoke, name, operands);
@@ -22,16 +58,18 @@ static void * invoke_build(void * _source, char * name) {
         operand = operand_build(_source);
         if (operand == NULL) {
             fputs("')' is expected", stderr);
-            break;
+            exit(-1);
         }
         operands->append(operands, operand);
         if (nextTokenIs(",")) {
             popNextToken();
         } else if (!nextTokenIs(")")) {
-            fputs("')' is expected2", stderr);
-            break;
+            fputs("')' is expected", stderr);
+            exit(-1);
         }
     }
+
+    matchToken(")");
 
     return result;
 }
@@ -62,12 +100,12 @@ void * operand_build(void * _source) {
         } else if (nextTokenType() == TOKEN_NAME) {
             name = popNextToken();
             if (hasNextToken() && nextTokenIs("(")) {
-                matchToken("(");
                 operand = invoke_build(source, name);
-                matchToken(")");
             } else {
                 operand = new(Reference, name);
             }
+        } else if (nextTokenIs("{")) {
+            operand = set_build(source);
         }
 
         if (operand == NULL) {

@@ -22,6 +22,14 @@ CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/escript
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
 CND_PACKAGE_NAME_Release=escript.tar
 CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/escript.tar
+# Verbose configuration
+CND_PLATFORM_Verbose=GNU-Linux
+CND_ARTIFACT_DIR_Verbose=dist/Verbose/GNU-Linux
+CND_ARTIFACT_NAME_Verbose=escript
+CND_ARTIFACT_PATH_Verbose=dist/Verbose/GNU-Linux/escript
+CND_PACKAGE_DIR_Verbose=dist/Verbose/GNU-Linux/package
+CND_PACKAGE_NAME_Verbose=escript.tar
+CND_PACKAGE_PATH_Verbose=dist/Verbose/GNU-Linux/package/escript.tar
 #
 # include compiler specific variables
 #

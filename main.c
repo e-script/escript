@@ -5,8 +5,6 @@
  * Created on December 12, 2019, 10:14 AM
  */
 
-#include <stdio.h>
-
 #include "oop.h"
 #include "escript.h"
 
@@ -21,18 +19,20 @@ int main(int param_count, char ** params) {
         if (source == NULL) {
             fputs("Unable to open source code", stderr);
         } else {
-#ifndef RELEASE
+#ifdef VERBOSE
             printf("Running: %s\n", filepath);
 #endif
             source->read(source);
-#ifndef RELEASE
+#ifdef VERBOSE
             printf("Build source:\n%s\n", source->value);
 #endif
             source->build(source);
-#ifndef RELEASE
+#ifdef VERBOSE
             printf("Run:\n");
 #endif
-            source->run(source);
+            struct Hash * context = new(Hash);
+            struct NumberValue * result = source->run(source, context);
+            printf("result: %d\n", result->value);
         }
     }
 }

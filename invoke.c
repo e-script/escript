@@ -1,19 +1,19 @@
 #include "escript.h"
 
-static void * run(void * _self) {
+static void * run(void * _self, void * _context) {
     struct Invoke * self = _self;
 
     struct Operand * operand;
 
-#ifndef RELEASE
+#ifdef VERBOSE
     printf("invoke_%s(", self->name);
 #endif
     int i;
     for (i = 0; i < self->operands->size; i++) {
         operand = self->operands->get(self->operands, i);
-        operand->run(operand);
+        operand->run(operand, _context);
     }
-#ifndef RELEASE
+#ifdef VERBOSE
     printf(") ");
 #endif
 
@@ -25,7 +25,7 @@ static void * constructor(void * _self, va_list * params) {
 
     self->name = va_arg(*params, char *);
     self->operands = va_arg(*params, struct Array *);
-    self->operand.run = run;
+    self->parent.run = run;
 
     return self;
 }

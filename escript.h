@@ -30,8 +30,23 @@ struct Array {
 
     int (* append)(void * _self, void * element);
     void * (* get)(void * _self, size_t index);
+    void * (* pop)(void * _self);
 };
 const void * Array;
+
+struct Hash {
+    const void * class;
+
+    int size;
+    struct Array * keys;
+    struct Array * entries;
+
+    void (* set)(void * _self, char * key, void * element);
+    int (* contains)(void * _self, char * key);
+    void * (* get)(void * _self, char * key);
+    void * (* pop)(void * _self, char * key);
+};
+const void * Hash;
 
 /*
  Operand
@@ -39,25 +54,33 @@ const void * Array;
 struct Operand {
     const void * class;
 
-    void * (* run)(void * _self);
+    void * (* run)(void * _self, void * _context);
 };
 
 struct Number {
-    struct Operand operand;
+    struct Operand parent;
 
     int value;
 };
 const void * Number;
 
 struct Reference {
-    struct Operand operand;
+    struct Operand parent;
 
     char * name;
+    int first;
 };
 const void * Reference;
 
+struct Set {
+    struct Operand parent;
+
+    struct Array * names;
+};
+const void * Set;
+
 struct Expression {
-    struct Operand operand;
+    struct Operand parent;
 
     struct Array * operands;
     struct Array * operators;
@@ -65,7 +88,7 @@ struct Expression {
 const void * Expression;
 
 struct Invoke {
-    struct Operand operand;
+    struct Operand parent;
 
     char * name;
     struct Array * operands;
@@ -73,6 +96,19 @@ struct Invoke {
 const void * Invoke;
 
 void * operand_build(void * _source);
+
+/*
+ Value
+ */
+struct Value {
+    const void * class;
+};
+
+struct NumberValue {
+    struct Value parent;
+    int value;
+};
+const void * NumberValue;
 
 /*
  Body
@@ -83,7 +119,7 @@ struct Body {
     struct Array * operands;
 
     void (* build)(void * _self, void * _source);
-    void * (* run)(void * _self);
+    void * (* run)(void * _self, void * _context);
 };
 const void * Body;
 
@@ -109,9 +145,13 @@ struct Source {
     char * (* popNextToken)(void * _self);
     void (* matchToken)(void * _self, char * token);
     void (* build)(void * _self);
-    void * (* run)(void * _self);
+    void * (* run)(void * _self, void * _context);
 };
 const void * Source;
+
+
+void * assign(void * _reference, char * operator,void * _value, void * _context);
+void * operate(void * _a, char * operator,void * _b);
 
 #endif /* ESCRIPT_H */
 
