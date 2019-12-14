@@ -10,7 +10,7 @@ Escript is a scripting language which will support oop but much simpler and has 
 1. Download latest release at here: [Releases](https://github.com/chientranse/escript/releases)
 2. Extract:
 
-    `tar -xzvf escript-v0.0.1-.tar.gz`
+    `tar -xzvf escript-v0.0.11.tar.gz`
 
 3. Copy escript to /usr/local/bin:
     
