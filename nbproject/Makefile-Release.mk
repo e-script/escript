@@ -35,21 +35,21 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
-	${OBJECTDIR}/array.o \
-	${OBJECTDIR}/body.o \
-	${OBJECTDIR}/character.o \
-	${OBJECTDIR}/expression.o \
-	${OBJECTDIR}/hash.o \
-	${OBJECTDIR}/invoke.o \
-	${OBJECTDIR}/main.o \
-	${OBJECTDIR}/number.o \
-	${OBJECTDIR}/number_value.o \
-	${OBJECTDIR}/oop.o \
-	${OBJECTDIR}/operand.o \
-	${OBJECTDIR}/operator.o \
-	${OBJECTDIR}/reference.o \
-	${OBJECTDIR}/set.o \
-	${OBJECTDIR}/source.o
+	${OBJECTDIR}/src/escript/array.o \
+	${OBJECTDIR}/src/escript/body.o \
+	${OBJECTDIR}/src/escript/character.o \
+	${OBJECTDIR}/src/escript/expression.o \
+	${OBJECTDIR}/src/escript/hash.o \
+	${OBJECTDIR}/src/escript/invoke.o \
+	${OBJECTDIR}/src/escript/number.o \
+	${OBJECTDIR}/src/escript/number_value.o \
+	${OBJECTDIR}/src/escript/oop.o \
+	${OBJECTDIR}/src/escript/operand.o \
+	${OBJECTDIR}/src/escript/operator.o \
+	${OBJECTDIR}/src/escript/reference.o \
+	${OBJECTDIR}/src/escript/set.o \
+	${OBJECTDIR}/src/escript/source.o \
+	${OBJECTDIR}/src/main.o
 
 # Test Directory
 TESTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}/tests
@@ -86,80 +86,80 @@ ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/escript: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/escript ${OBJECTFILES} ${LDLIBSOPTIONS}
 
-${OBJECTDIR}/array.o: array.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/array.o: src/escript/array.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/array.o array.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/array.o src/escript/array.c
 
-${OBJECTDIR}/body.o: body.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/body.o: src/escript/body.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/body.o body.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/body.o src/escript/body.c
 
-${OBJECTDIR}/character.o: character.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/character.o: src/escript/character.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/character.o character.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/character.o src/escript/character.c
 
-${OBJECTDIR}/expression.o: expression.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/expression.o: src/escript/expression.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/expression.o expression.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/expression.o src/escript/expression.c
 
-${OBJECTDIR}/hash.o: hash.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/hash.o: src/escript/hash.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hash.o hash.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/hash.o src/escript/hash.c
 
-${OBJECTDIR}/invoke.o: invoke.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/invoke.o: src/escript/invoke.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/invoke.o invoke.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/invoke.o src/escript/invoke.c
 
-${OBJECTDIR}/main.o: main.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/number.o: src/escript/number.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main.o main.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/number.o src/escript/number.c
 
-${OBJECTDIR}/number.o: number.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/number_value.o: src/escript/number_value.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number.o number.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/number_value.o src/escript/number_value.c
 
-${OBJECTDIR}/number_value.o: number_value.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/oop.o: src/escript/oop.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_value.o number_value.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/oop.o src/escript/oop.c
 
-${OBJECTDIR}/oop.o: oop.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/operand.o: src/escript/operand.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/oop.o oop.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/operand.o src/escript/operand.c
 
-${OBJECTDIR}/operand.o: operand.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/operator.o: src/escript/operator.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operand.o operand.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/operator.o src/escript/operator.c
 
-${OBJECTDIR}/operator.o: operator.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/reference.o: src/escript/reference.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operator.o operator.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/reference.o src/escript/reference.c
 
-${OBJECTDIR}/reference.o: reference.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/set.o: src/escript/set.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/reference.o reference.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/set.o src/escript/set.c
 
-${OBJECTDIR}/set.o: set.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/escript/source.o: src/escript/source.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/set.o set.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/source.o src/escript/source.c
 
-${OBJECTDIR}/source.o: source.c 
-	${MKDIR} -p ${OBJECTDIR}
+${OBJECTDIR}/src/main.o: src/main.c 
+	${MKDIR} -p ${OBJECTDIR}/src
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source.o source.c
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main.o src/main.c
 
 # Subprojects
 .build-subprojects:
@@ -176,202 +176,202 @@ ${TESTDIR}/TestFiles/f1: ${TESTDIR}/tests/test_array.o ${OBJECTFILES:%.o=%_nomai
 ${TESTDIR}/tests/test_array.o: tests/test_array.c 
 	${MKDIR} -p ${TESTDIR}/tests
 	${RM} "$@.d"
-	$(COMPILE.c) -O2 -I. -std=c89 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/test_array.o tests/test_array.c
+	$(COMPILE.c) -O2 -Iinclude -I. -std=c89 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/test_array.o tests/test_array.c
 
 
-${OBJECTDIR}/array_nomain.o: ${OBJECTDIR}/array.o array.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/array.o`; \
+${OBJECTDIR}/src/escript/array_nomain.o: ${OBJECTDIR}/src/escript/array.o src/escript/array.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/array.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/array_nomain.o array.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/array_nomain.o src/escript/array.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/array.o ${OBJECTDIR}/array_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/array.o ${OBJECTDIR}/src/escript/array_nomain.o;\
 	fi
 
-${OBJECTDIR}/body_nomain.o: ${OBJECTDIR}/body.o body.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/body.o`; \
+${OBJECTDIR}/src/escript/body_nomain.o: ${OBJECTDIR}/src/escript/body.o src/escript/body.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/body.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/body_nomain.o body.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/body_nomain.o src/escript/body.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/body.o ${OBJECTDIR}/body_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/body.o ${OBJECTDIR}/src/escript/body_nomain.o;\
 	fi
 
-${OBJECTDIR}/character_nomain.o: ${OBJECTDIR}/character.o character.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/character.o`; \
+${OBJECTDIR}/src/escript/character_nomain.o: ${OBJECTDIR}/src/escript/character.o src/escript/character.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/character.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/character_nomain.o character.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/character_nomain.o src/escript/character.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/character.o ${OBJECTDIR}/character_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/character.o ${OBJECTDIR}/src/escript/character_nomain.o;\
 	fi
 
-${OBJECTDIR}/expression_nomain.o: ${OBJECTDIR}/expression.o expression.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/expression.o`; \
+${OBJECTDIR}/src/escript/expression_nomain.o: ${OBJECTDIR}/src/escript/expression.o src/escript/expression.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/expression.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/expression_nomain.o expression.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/expression_nomain.o src/escript/expression.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/expression.o ${OBJECTDIR}/expression_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/expression.o ${OBJECTDIR}/src/escript/expression_nomain.o;\
 	fi
 
-${OBJECTDIR}/hash_nomain.o: ${OBJECTDIR}/hash.o hash.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/hash.o`; \
+${OBJECTDIR}/src/escript/hash_nomain.o: ${OBJECTDIR}/src/escript/hash.o src/escript/hash.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/hash.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/hash_nomain.o hash.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/hash_nomain.o src/escript/hash.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/hash.o ${OBJECTDIR}/hash_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/hash.o ${OBJECTDIR}/src/escript/hash_nomain.o;\
 	fi
 
-${OBJECTDIR}/invoke_nomain.o: ${OBJECTDIR}/invoke.o invoke.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/invoke.o`; \
+${OBJECTDIR}/src/escript/invoke_nomain.o: ${OBJECTDIR}/src/escript/invoke.o src/escript/invoke.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/invoke.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/invoke_nomain.o invoke.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/invoke_nomain.o src/escript/invoke.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/invoke.o ${OBJECTDIR}/invoke_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/invoke.o ${OBJECTDIR}/src/escript/invoke_nomain.o;\
 	fi
 
-${OBJECTDIR}/main_nomain.o: ${OBJECTDIR}/main.o main.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/main.o`; \
+${OBJECTDIR}/src/escript/number_nomain.o: ${OBJECTDIR}/src/escript/number.o src/escript/number.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/number.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/main_nomain.o main.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/number_nomain.o src/escript/number.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/main.o ${OBJECTDIR}/main_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/number.o ${OBJECTDIR}/src/escript/number_nomain.o;\
 	fi
 
-${OBJECTDIR}/number_nomain.o: ${OBJECTDIR}/number.o number.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/number.o`; \
+${OBJECTDIR}/src/escript/number_value_nomain.o: ${OBJECTDIR}/src/escript/number_value.o src/escript/number_value.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/number_value.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_nomain.o number.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/number_value_nomain.o src/escript/number_value.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/number.o ${OBJECTDIR}/number_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/number_value.o ${OBJECTDIR}/src/escript/number_value_nomain.o;\
 	fi
 
-${OBJECTDIR}/number_value_nomain.o: ${OBJECTDIR}/number_value.o number_value.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/number_value.o`; \
+${OBJECTDIR}/src/escript/oop_nomain.o: ${OBJECTDIR}/src/escript/oop.o src/escript/oop.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/oop.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/number_value_nomain.o number_value.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/oop_nomain.o src/escript/oop.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/number_value.o ${OBJECTDIR}/number_value_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/oop.o ${OBJECTDIR}/src/escript/oop_nomain.o;\
 	fi
 
-${OBJECTDIR}/oop_nomain.o: ${OBJECTDIR}/oop.o oop.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/oop.o`; \
+${OBJECTDIR}/src/escript/operand_nomain.o: ${OBJECTDIR}/src/escript/operand.o src/escript/operand.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/operand.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/oop_nomain.o oop.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/operand_nomain.o src/escript/operand.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/oop.o ${OBJECTDIR}/oop_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/operand.o ${OBJECTDIR}/src/escript/operand_nomain.o;\
 	fi
 
-${OBJECTDIR}/operand_nomain.o: ${OBJECTDIR}/operand.o operand.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/operand.o`; \
+${OBJECTDIR}/src/escript/operator_nomain.o: ${OBJECTDIR}/src/escript/operator.o src/escript/operator.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/operator.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operand_nomain.o operand.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/operator_nomain.o src/escript/operator.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/operand.o ${OBJECTDIR}/operand_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/operator.o ${OBJECTDIR}/src/escript/operator_nomain.o;\
 	fi
 
-${OBJECTDIR}/operator_nomain.o: ${OBJECTDIR}/operator.o operator.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/operator.o`; \
+${OBJECTDIR}/src/escript/reference_nomain.o: ${OBJECTDIR}/src/escript/reference.o src/escript/reference.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/reference.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/operator_nomain.o operator.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/reference_nomain.o src/escript/reference.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/operator.o ${OBJECTDIR}/operator_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/reference.o ${OBJECTDIR}/src/escript/reference_nomain.o;\
 	fi
 
-${OBJECTDIR}/reference_nomain.o: ${OBJECTDIR}/reference.o reference.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/reference.o`; \
+${OBJECTDIR}/src/escript/set_nomain.o: ${OBJECTDIR}/src/escript/set.o src/escript/set.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/set.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/reference_nomain.o reference.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/set_nomain.o src/escript/set.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/reference.o ${OBJECTDIR}/reference_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/set.o ${OBJECTDIR}/src/escript/set_nomain.o;\
 	fi
 
-${OBJECTDIR}/set_nomain.o: ${OBJECTDIR}/set.o set.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/set.o`; \
+${OBJECTDIR}/src/escript/source_nomain.o: ${OBJECTDIR}/src/escript/source.o src/escript/source.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/source.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/set_nomain.o set.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/source_nomain.o src/escript/source.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/set.o ${OBJECTDIR}/set_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/escript/source.o ${OBJECTDIR}/src/escript/source_nomain.o;\
 	fi
 
-${OBJECTDIR}/source_nomain.o: ${OBJECTDIR}/source.o source.c 
-	${MKDIR} -p ${OBJECTDIR}
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/source.o`; \
+${OBJECTDIR}/src/main_nomain.o: ${OBJECTDIR}/src/main.o src/main.c 
+	${MKDIR} -p ${OBJECTDIR}/src
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/main.o`; \
 	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
 	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
 	then  \
 	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/source_nomain.o source.c;\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/main_nomain.o src/main.c;\
 	else  \
-	    ${CP} ${OBJECTDIR}/source.o ${OBJECTDIR}/source_nomain.o;\
+	    ${CP} ${OBJECTDIR}/src/main.o ${OBJECTDIR}/src/main_nomain.o;\
 	fi
 
 # Run Test Targets
