@@ -1,6 +1,6 @@
 #include "escript.h"
 
-static void * set_build(void * _source) {
+void * set_build(void * _source) {
     void * result = NULL;
 
     struct Source * source = _source;
@@ -15,11 +15,8 @@ static void * set_build(void * _source) {
 #define nextTokenIs(token)(strcmp(source->getNextToken(source), token) == 0)
 #define matchToken(token)(source->matchToken(source, token))
 
-    matchToken("{");
-
     while (hasNextToken()) {
         if (nextTokenIs("}")) {
-            result = new(Set, operands);
             break;
         }
         operand = operand_build(_source);
@@ -28,15 +25,9 @@ static void * set_build(void * _source) {
             exit(-1);
         }
         operands->append(operands, operand);
-        if (nextTokenIs(",")) {
-            popNextToken();
-        } else if (!nextTokenIs("}")) {
-            fputs("'}' is expected", stderr);
-            exit(-1);
-        }
     }
 
-    matchToken("}");
+    result = new(Set, operands);
 
     return result;
 }
@@ -112,7 +103,9 @@ void * operand_build(void * _source) {
                 operand = new(Reference, name);
             }
         } else if (nextTokenIs("{")) {
+            matchToken("{");
             operand = set_build(source);
+            matchToken("}");
         }
 
         if (operand == NULL) {

@@ -1,10 +1,11 @@
 #include "charaters.h"
 
 int get_char_type(char c) {
-    if (c == '\r' || c == '\n' || c == '\t' || c == '\f' || c == ' ') {
+    if (c == '\r' || c == '\n' || c == '\t' || c == '\f' || c == ' ' || c== ';' || c == ',') {
         return CHAR_SPACE;
     }
-    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')) {
+    if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')
+            || (c == '.')) {
         return CHAR_NAME;
     }
     if (c == '!' || c == '@' || c == '#' || c == '$' || c == '%'
@@ -20,7 +21,7 @@ int get_char_type(char c) {
     if (c == '\'' || c == '"' || c == '`') {
         return CHAR_QUOTATION;
     }
-    if (c == '.' || c == ',') {
+    if (c == ',') {
         return CHAR_DELIMETER;
     }
     return CHAR_UNKNOWN;

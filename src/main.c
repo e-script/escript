@@ -32,7 +32,7 @@ int main(int param_count, char ** params) {
 #endif
             struct Array * contexts = new(Array);
             struct NumberValue * result = source->run(source, contexts);
-            /*printf("result: %d\n", result->value);*/
+            printf("result: %d\n", result->value);
         }
     }
 }

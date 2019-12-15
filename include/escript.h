@@ -94,6 +94,7 @@ struct Invoke {
 };
 const void * Invoke;
 
+void * set_build(void * _source);
 void * operand_build(void * _source);
 
 /*
@@ -143,7 +144,7 @@ struct Source {
 
     size_t offset;
 
-    struct Body * body;
+    struct Set * set;
 
     int (* checkFileExists)(char * filePath);
     int (* read)(void * _self);

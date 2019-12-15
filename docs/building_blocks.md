@@ -2,9 +2,8 @@
 
 ## Primitive data types
 
-* char
-* byte
-* int
+* number
+* string
 
 ## Set
 
@@ -48,13 +47,14 @@
 
     Two sides of `->` are two set operands.
     The first set is parameter set. The second set is body set.
+    `result` is a predefined variable help store the return value.
 
 ## Invoke map
 
     ```
-        result = map2(7)
-        result = sum(2, 3)
-        result = sum(map(1), map(2))
+        result = map2(7)                'The result should be 7 * 8 = 56'
+        result = sum(2, 3)              'The result should be 2 + 3 = 5'
+        result = sum(map(1), map(2))    'The result should be 7 - 1 = 6'
     ```
 
 ## Class
@@ -71,9 +71,9 @@
         }
     ```
 
-    `parent` is special variable target Student instance.
+    `parent` is predefined variable which target Student instance in this case.
 
-    There is no class in escript, but you can clone any set
+    There is no class or object in escript, but you can clone any set
 
     ```
         bob = clone(Student) bob.init("Bob", 23)
@@ -87,7 +87,7 @@
 
     ```
         for = escript.for
-        { printf } = stdio
+        printf = stdio.printf
 
         Animal = {
             name = string
@@ -111,3 +111,11 @@
         i = 0
         for (i < animals.size, i += 1, {animal} -> { animal.shout() })
     ```
+
+    escript and stdio are predefined sets. Documentation on predefined set
+    is located at [Predefined Sets][https://github.com/e-script/escript/docs/predefined_sets.md]
+
+## Semicolon `;` and comma `,`
+
+    Return, Newline, Tab, Feed, Space, Semicolon and Comma 
+    are all considered `space` and are bypassed by the interpreter.

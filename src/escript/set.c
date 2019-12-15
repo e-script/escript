@@ -11,17 +11,20 @@ static void * run(void * _self, void * _contexts) {
     contexts->append(contexts, context);
 
 #ifdef VERBOSE
-    printf("set(");
+    printf("set(\n");
 #endif
 
     int i;
     for (i = 0; i < self->operands->size; i++) {
         operand = self->operands->get(self->operands, i);
         operand->run(operand, contexts);
+#ifdef VERBOSE
+        printf("\n");
+#endif
     }
 
 #ifdef VERBOSE
-    printf(") ");
+    printf(")\n");
 #endif
 
     contexts->pop(contexts);

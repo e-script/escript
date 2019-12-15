@@ -149,8 +149,7 @@ static void matchToken(void * _self, char * token) {
 static void build(void * _self) {
     struct Source * self = _self;
 
-    self->body = new(Body);
-    self->body->build(self->body, self);
+    self->set = set_build(_self);
 }
 
 static void * run(void * _self, void * _contexts) {
@@ -162,7 +161,9 @@ static void * run(void * _self, void * _contexts) {
     struct Hash * context = new(Hash);
     contexts->append(contexts, context);
 
-    result = self->body->run(self->body, contexts);
+    struct SetValue * setValue = self->set->parent.run(self->set, contexts);
+
+    result = setValue->values->get(setValue->values, "result");
 
     contexts->pop(contexts);
 
