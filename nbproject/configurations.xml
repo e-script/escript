@@ -3,6 +3,7 @@
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="docs" displayName="Documentations" projectFiles="true">
       <logicalFolder name="docs" displayName="docs" projectFiles="true">
+        <itemPath>building_blocks.md</itemPath>
         <itemPath>docs/sources.md</itemPath>
       </logicalFolder>
     </logicalFolder>
@@ -22,6 +23,7 @@
         <itemPath>samples/sample0.e</itemPath>
         <itemPath>samples/sample1.e</itemPath>
         <itemPath>samples/sample2.e</itemPath>
+        <itemPath>samples/sample3.e</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="SourceFiles" displayName="Sources" projectFiles="true">
@@ -40,8 +42,8 @@
           <itemPath>src/escript/operator.c</itemPath>
           <itemPath>src/escript/reference.c</itemPath>
           <itemPath>src/escript/set.c</itemPath>
-          <itemPath>src/escript/source.c</itemPath>
           <itemPath>src/escript/set_value.c</itemPath>
+          <itemPath>src/escript/source.c</itemPath>
         </logicalFolder>
         <itemPath>src/main.c</itemPath>
       </logicalFolder>
@@ -89,6 +91,8 @@
           </incDir>
         </cTool>
       </compileType>
+      <item path="building_blocks.md" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -117,6 +121,8 @@
       <item path="samples/sample1.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample2.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -177,6 +183,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="building_blocks.md" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -205,6 +213,8 @@
       <item path="samples/sample1.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample2.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -268,6 +278,8 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
+      <item path="building_blocks.md" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -296,6 +308,8 @@
       <item path="samples/sample1.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample2.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
       </item>
