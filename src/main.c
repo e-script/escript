@@ -30,9 +30,9 @@ int main(int param_count, char ** params) {
 #ifdef VERBOSE
             printf("Run:\n");
 #endif
-            struct Hash * context = new(Hash);
-            struct NumberValue * result = source->run(source, context);
-            printf("result: %d\n", result->value);
+            struct Array * contexts = new(Array);
+            struct NumberValue * result = source->run(source, contexts);
+            /*printf("result: %d\n", result->value);*/
         }
     }
 }

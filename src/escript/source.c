@@ -153,10 +153,20 @@ static void build(void * _self) {
     self->body->build(self->body, self);
 }
 
-static void * run(void * _self, void * _context) {
+static void * run(void * _self, void * _contexts) {
+    void * result = NULL;
+
     struct Source * self = _self;
-    
-    return self->body->run(self->body, _context);
+
+    struct Array * contexts = _contexts;
+    struct Hash * context = new(Hash);
+    contexts->append(contexts, context);
+
+    result = self->body->run(self->body, contexts);
+
+    contexts->pop(contexts);
+
+    return result;
 }
 
 static void * constructor(void * _self, va_list * params) {

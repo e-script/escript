@@ -48,6 +48,7 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/escript/operator.o \
 	${OBJECTDIR}/src/escript/reference.o \
 	${OBJECTDIR}/src/escript/set.o \
+	${OBJECTDIR}/src/escript/set_value.o \
 	${OBJECTDIR}/src/escript/source.o \
 	${OBJECTDIR}/src/main.o
 
@@ -150,6 +151,11 @@ ${OBJECTDIR}/src/escript/set.o: src/escript/set.c
 	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/set.o src/escript/set.c
+
+${OBJECTDIR}/src/escript/set_value.o: src/escript/set_value.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/set_value.o src/escript/set_value.c
 
 ${OBJECTDIR}/src/escript/source.o: src/escript/source.c 
 	${MKDIR} -p ${OBJECTDIR}/src/escript
@@ -346,6 +352,19 @@ ${OBJECTDIR}/src/escript/set_nomain.o: ${OBJECTDIR}/src/escript/set.o src/escrip
 	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/set_nomain.o src/escript/set.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/escript/set.o ${OBJECTDIR}/src/escript/set_nomain.o;\
+	fi
+
+${OBJECTDIR}/src/escript/set_value_nomain.o: ${OBJECTDIR}/src/escript/set_value.o src/escript/set_value.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/set_value.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/set_value_nomain.o src/escript/set_value.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/src/escript/set_value.o ${OBJECTDIR}/src/escript/set_value_nomain.o;\
 	fi
 
 ${OBJECTDIR}/src/escript/source_nomain.o: ${OBJECTDIR}/src/escript/source.o src/escript/source.c 

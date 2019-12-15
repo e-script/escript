@@ -41,6 +41,7 @@
           <itemPath>src/escript/reference.c</itemPath>
           <itemPath>src/escript/set.c</itemPath>
           <itemPath>src/escript/source.c</itemPath>
+          <itemPath>src/escript/set_value.c</itemPath>
         </logicalFolder>
         <itemPath>src/main.c</itemPath>
       </logicalFolder>
@@ -60,8 +61,8 @@
                    displayName="Important Files"
                    projectFiles="false"
                    kind="IMPORTANT_FILES_FOLDER">
-      <itemPath>Makefile</itemPath>
       <itemPath>LICENSE</itemPath>
+      <itemPath>Makefile</itemPath>
       <itemPath>readme.md</itemPath>
     </logicalFolder>
   </logicalFolder>
@@ -88,8 +89,6 @@
           </incDir>
         </cTool>
       </compileType>
-      <item path="LICENSE" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -112,8 +111,6 @@
       <item path="include/escript.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/oop.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="readme.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample0.e" ex="false" tool="3" flavor2="0">
       </item>
@@ -146,6 +143,8 @@
       <item path="src/escript/reference.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/set.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/escript/set_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/source.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -178,8 +177,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="LICENSE" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -202,8 +199,6 @@
       <item path="include/escript.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/oop.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="readme.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample0.e" ex="false" tool="3" flavor2="0">
       </item>
@@ -236,6 +231,8 @@
       <item path="src/escript/reference.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/set.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/escript/set_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/source.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -271,8 +268,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="LICENSE" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -295,8 +290,6 @@
       <item path="include/escript.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/oop.h" ex="false" tool="3" flavor2="0">
-      </item>
-      <item path="readme.md" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample0.e" ex="false" tool="3" flavor2="0">
       </item>
@@ -329,6 +322,8 @@
       <item path="src/escript/reference.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/set.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/escript/set_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/source.c" ex="false" tool="0" flavor2="0">
       </item>

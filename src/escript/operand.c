@@ -5,7 +5,9 @@ static void * set_build(void * _source) {
 
     struct Source * source = _source;
 
-    struct Array * names = new(Array);
+    struct Array * operands = new(Array);
+
+    void * operand;
 
 #define hasNextToken()(source->hasNextToken(source))
 #define popNextToken()(source->popNextToken(source))
@@ -17,10 +19,15 @@ static void * set_build(void * _source) {
 
     while (hasNextToken()) {
         if (nextTokenIs("}")) {
-            result = new(Set, names);
+            result = new(Set, operands);
             break;
         }
-        names->append(names, popNextToken());
+        operand = operand_build(_source);
+        if (operand == NULL) {
+            fputs("operand is expected", stderr);
+            exit(-1);
+        }
+        operands->append(operands, operand);
         if (nextTokenIs(",")) {
             popNextToken();
         } else if (!nextTokenIs("}")) {

@@ -1,6 +1,6 @@
 #include "escript.h"
 
-static void * run(void * _self, void * _context) {
+static void * run(void * _self, void * _contexts) {
     void * result = NULL;
 
     struct Expression * self = _self;
@@ -19,13 +19,13 @@ static void * run(void * _self, void * _context) {
         operand = self->operands->get(self->operands, i);
         if (operator != NULL) {
             if (strcmp(operator, "=") == 0) {
-                result = assign(operand, operator, result, _context);
+                result = assign(operand, operator, result, _contexts);
             } else {
-                operand_result = operand->run(operand, _context);
+                operand_result = operand->run(operand, _contexts);
                 result = operate(operand_result, operator, result);
-            }
+            } 
         } else {
-            operand_result = operand->run(operand, _context);
+            operand_result = operand->run(operand, _contexts);
             result = operand_result;
         }
         if (i > 0) {

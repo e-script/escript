@@ -1,28 +1,40 @@
 #include "escript.h"
 
-static void * run(void * _self, void * _context) {
+static void * run(void * _self, void * _contexts) {
+    void * result = NULL;
+
     struct Set * self = _self;
+    struct Operand * operand;
+
+    struct Array * contexts = _contexts;
+    struct Hash * context = new(Hash);
+    contexts->append(contexts, context);
 
 #ifdef VERBOSE
     printf("set(");
+#endif
+
     int i;
-    for (i = 0; i < self->names->size; i++) {
-        if (i == self->names->size - 1) {
-            printf("name_%s ", (char*) self->names->get(self->names, i));
-        } else {
-            printf("name_%s, ", (char*) self->names->get(self->names, i));
-        }
+    for (i = 0; i < self->operands->size; i++) {
+        operand = self->operands->get(self->operands, i);
+        operand->run(operand, contexts);
     }
+
+#ifdef VERBOSE
     printf(") ");
 #endif
 
-    return NULL;
+    contexts->pop(contexts);
+
+    result = new(SetValue, context);
+
+    return result;
 }
 
 static void * constructor(void * _self, va_list * params) {
     struct Set * self = _self;
 
-    self->names = va_arg(*params, struct Array *);
+    self->operands = va_arg(*params, struct Array *);
 
     self->parent.run = run;
 

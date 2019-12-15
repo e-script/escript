@@ -1,16 +1,27 @@
 #include "escript.h"
 
-static void * run(void * _self, void * _context) {
+static void * run(void * _self, void * _contexts) {
     void * result = NULL;
 
     struct Reference * self = _self;
 
-    struct Hash * context = _context;
+    struct Array * contexts = _contexts;
+    struct Hash * context;
 
 #ifdef VERBOSE
     printf("reference_%s ", self->name);
 #endif
-    result = context->get(context, self->name);
+    
+    int i;
+    for (i = contexts->size - 1; i >= 0; i--)
+    {
+        context = contexts->get(contexts, i);
+        if (context->contains(context, self->name))
+        {
+            result = context->get(context, self->name);
+            break;
+        }
+    }
 
     if (result == NULL) {
         fputs("unknown_reference", stderr);
@@ -24,7 +35,6 @@ static void *constructor(void * _self, va_list * params) {
     struct Reference * self = _self;
 
     self->name = va_arg(*params, char *);
-    self->first = 0;
     self->parent.run = run;
 
     return self;

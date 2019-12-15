@@ -1,14 +1,12 @@
 #include "escript.h"
 
-void * assign(void * _reference, char * operator, void * _value, void * _context) {
+void * assign(void * _reference, char * operator, void * _value, void * _contexts) {
     void * result = NULL;
 
     struct Reference * reference = _reference;
-    struct Hash * context = _context;
+    struct Array * contexts = _contexts;
+    struct Hash * context = contexts->get(contexts, contexts->size - 1);
 
-    if (!context->contains(context, reference->name)) {
-        reference->first = 1;
-    }
     context->set(context, reference->name, _value);
 
     result = reference;

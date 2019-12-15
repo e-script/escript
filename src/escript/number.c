@@ -1,6 +1,6 @@
 #include "escript.h"
 
-static void * run(void * _self, void * _context) {
+static void * run(void * _self, void * _contexts) {
     struct Number * self = _self;
 
 #ifdef VERBOSE

@@ -54,7 +54,7 @@ const void * Hash;
 struct Operand {
     const void * class;
 
-    void * (* run)(void * _self, void * _context);
+    void * (* run)(void * _self, void * _contexts);
 };
 
 struct Number {
@@ -68,14 +68,13 @@ struct Reference {
     struct Operand parent;
 
     char * name;
-    int first;
 };
 const void * Reference;
 
 struct Set {
     struct Operand parent;
 
-    struct Array * names;
+    struct Array * operands;
 };
 const void * Set;
 
@@ -110,6 +109,14 @@ struct NumberValue {
 };
 const void * NumberValue;
 
+struct SetValue {
+    struct Value parent;
+
+    struct Hash * values;
+};
+
+const void * SetValue;
+
 /*
  Body
  */
@@ -119,7 +126,7 @@ struct Body {
     struct Array * operands;
 
     void (* build)(void * _self, void * _source);
-    void * (* run)(void * _self, void * _context);
+    void * (* run)(void * _self, void * _contexts);
 };
 const void * Body;
 
@@ -145,12 +152,12 @@ struct Source {
     char * (* popNextToken)(void * _self);
     void (* matchToken)(void * _self, char * token);
     void (* build)(void * _self);
-    void * (* run)(void * _self, void * _context);
+    void * (* run)(void * _self, void * _contexts);
 };
 const void * Source;
 
 
-void * assign(void * _reference, char * operator,void * _value, void * _context);
+void * assign(void * _reference, char * operator,void * _value, void * _contexts);
 void * operate(void * _a, char * operator,void * _b);
 
 #endif /* ESCRIPT_H */
