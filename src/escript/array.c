@@ -51,6 +51,19 @@ static void * pop(void * _self) {
     return result;
 }
 
+static void reverse(void * _self) {
+    struct Array * self = _self;
+    
+    void * tmp;
+
+    int i;
+    for (i = 0; i < self->size / 2; i++) {
+        tmp = self->elements[i];
+        self->elements[i] = self->elements[self->size - 1 - i];
+        self->elements[self->size - 1 - i] = tmp;
+    }
+}
+
 static void * constructor(void * _self, va_list * params) {
     struct Array * self = _self;
 
@@ -61,6 +74,7 @@ static void * constructor(void * _self, va_list * params) {
     self->append = append;
     self->get = get;
     self->pop = pop;
+    self->reverse = reverse;
 
     return self;
 }

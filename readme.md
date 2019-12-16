@@ -149,6 +149,29 @@ is located at [Predefined Sets][https://github.com/e-script/escript/docs/predefi
 Return, Newline, Tab, Feed, Space, Semicolon and Comma
 are all considered `space` and are bypassed by the interpreter.
 
+## Operators
+
+* Assignment operator
+
+```
+    i = 1
+    pi = -3.14
+    s = 'escript'
+```
+
+* Mapping operator
+
+```
+    names = [0, 1, 2] -> ['bob', 'alice', 'deadpool']
+    sum = { a = 0, b = 2 } -> {
+        result = a + b
+    }
+```
+
+* Arithmatic operator: `+`, `-`, `*`, `/`
+
+* Execution order: mapping first -> then `*`, `/` -> then `+`, `-` -> then assignment
+
 ## Development
 
 Requirements: GCC compiler

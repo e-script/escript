@@ -3,7 +3,6 @@
   <logicalFolder name="root" displayName="root" projectFiles="true" kind="ROOT">
     <logicalFolder name="docs" displayName="Documentations" projectFiles="true">
       <logicalFolder name="docs" displayName="docs" projectFiles="true">
-        <itemPath>docs/building_blocks.md</itemPath>
         <itemPath>docs/sources.md</itemPath>
       </logicalFolder>
     </logicalFolder>
@@ -31,15 +30,15 @@
         <logicalFolder name="escript" displayName="escript" projectFiles="true">
           <itemPath>src/escript/array.c</itemPath>
           <itemPath>src/escript/body.c</itemPath>
+          <itemPath>src/escript/builder.c</itemPath>
           <itemPath>src/escript/character.c</itemPath>
           <itemPath>src/escript/expression.c</itemPath>
+          <itemPath>src/function.c</itemPath>
           <itemPath>src/escript/hash.c</itemPath>
           <itemPath>src/escript/invoke.c</itemPath>
           <itemPath>src/escript/number.c</itemPath>
           <itemPath>src/escript/number_value.c</itemPath>
           <itemPath>src/escript/oop.c</itemPath>
-          <itemPath>src/escript/operand.c</itemPath>
-          <itemPath>src/escript/operator.c</itemPath>
           <itemPath>src/escript/reference.c</itemPath>
           <itemPath>src/escript/set.c</itemPath>
           <itemPath>src/escript/set_value.c</itemPath>
@@ -91,8 +90,6 @@
           </incDir>
         </cTool>
       </compileType>
-      <item path="docs/building_blocks.md" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -128,6 +125,8 @@
       </item>
       <item path="src/escript/body.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/escript/builder.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="src/escript/character.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/expression.c" ex="false" tool="0" flavor2="0">
@@ -142,10 +141,6 @@
       </item>
       <item path="src/escript/oop.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="src/escript/operand.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/escript/operator.c" ex="false" tool="0" flavor2="0">
-      </item>
       <item path="src/escript/reference.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/set.c" ex="false" tool="0" flavor2="0">
@@ -153,6 +148,8 @@
       <item path="src/escript/set_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/source.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/function.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/main.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -183,8 +180,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="docs/building_blocks.md" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -220,6 +215,8 @@
       </item>
       <item path="src/escript/body.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/escript/builder.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="src/escript/character.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/expression.c" ex="false" tool="0" flavor2="0">
@@ -234,10 +231,6 @@
       </item>
       <item path="src/escript/oop.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="src/escript/operand.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/escript/operator.c" ex="false" tool="0" flavor2="0">
-      </item>
       <item path="src/escript/reference.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/set.c" ex="false" tool="0" flavor2="0">
@@ -245,6 +238,8 @@
       <item path="src/escript/set_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/source.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/function.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/main.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -278,8 +273,6 @@
           <developmentMode>5</developmentMode>
         </asmTool>
       </compileType>
-      <item path="docs/building_blocks.md" ex="false" tool="3" flavor2="0">
-      </item>
       <item path="docs/sources.md" ex="false" tool="3" flavor2="0">
       </item>
       <folder path="TestFiles/f1">
@@ -315,6 +308,8 @@
       </item>
       <item path="src/escript/body.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/escript/builder.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="src/escript/character.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/expression.c" ex="false" tool="0" flavor2="0">
@@ -329,10 +324,6 @@
       </item>
       <item path="src/escript/oop.c" ex="false" tool="0" flavor2="0">
       </item>
-      <item path="src/escript/operand.c" ex="false" tool="0" flavor2="0">
-      </item>
-      <item path="src/escript/operator.c" ex="false" tool="0" flavor2="0">
-      </item>
       <item path="src/escript/reference.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/set.c" ex="false" tool="0" flavor2="0">
@@ -340,6 +331,8 @@
       <item path="src/escript/set_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/source.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/function.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/main.c" ex="false" tool="0" flavor2="0">
       </item>

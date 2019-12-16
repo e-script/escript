@@ -31,6 +31,7 @@ struct Array {
     int (* append)(void * _self, void * element);
     void * (* get)(void * _self, size_t index);
     void * (* pop)(void * _self);
+    void (* reverse)(void * _self);
 };
 const void * Array;
 
@@ -119,6 +120,17 @@ struct SetValue {
 const void * SetValue;
 
 /*
+ Function
+ */
+struct Function {
+    struct Operand parent;
+
+    struct Set * params;
+    struct Set * body;
+};
+const void * Function;
+
+/*
  Body
  */
 struct Body {
@@ -157,9 +169,6 @@ struct Source {
 };
 const void * Source;
 
-
-void * assign(void * _reference, char * operator,void * _value, void * _contexts);
-void * operate(void * _a, char * operator,void * _b);
 
 #endif /* ESCRIPT_H */
 

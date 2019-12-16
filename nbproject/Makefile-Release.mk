@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/src/escript/array.o \
 	${OBJECTDIR}/src/escript/body.o \
+	${OBJECTDIR}/src/escript/builder.o \
 	${OBJECTDIR}/src/escript/character.o \
 	${OBJECTDIR}/src/escript/expression.o \
 	${OBJECTDIR}/src/escript/hash.o \
@@ -44,12 +45,11 @@ OBJECTFILES= \
 	${OBJECTDIR}/src/escript/number.o \
 	${OBJECTDIR}/src/escript/number_value.o \
 	${OBJECTDIR}/src/escript/oop.o \
-	${OBJECTDIR}/src/escript/operand.o \
-	${OBJECTDIR}/src/escript/operator.o \
 	${OBJECTDIR}/src/escript/reference.o \
 	${OBJECTDIR}/src/escript/set.o \
 	${OBJECTDIR}/src/escript/set_value.o \
 	${OBJECTDIR}/src/escript/source.o \
+	${OBJECTDIR}/src/function.o \
 	${OBJECTDIR}/src/main.o
 
 # Test Directory
@@ -97,6 +97,11 @@ ${OBJECTDIR}/src/escript/body.o: src/escript/body.c
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/body.o src/escript/body.c
 
+${OBJECTDIR}/src/escript/builder.o: src/escript/builder.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/builder.o src/escript/builder.c
+
 ${OBJECTDIR}/src/escript/character.o: src/escript/character.c 
 	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
@@ -132,16 +137,6 @@ ${OBJECTDIR}/src/escript/oop.o: src/escript/oop.c
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/oop.o src/escript/oop.c
 
-${OBJECTDIR}/src/escript/operand.o: src/escript/operand.c 
-	${MKDIR} -p ${OBJECTDIR}/src/escript
-	${RM} "$@.d"
-	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/operand.o src/escript/operand.c
-
-${OBJECTDIR}/src/escript/operator.o: src/escript/operator.c 
-	${MKDIR} -p ${OBJECTDIR}/src/escript
-	${RM} "$@.d"
-	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/operator.o src/escript/operator.c
-
 ${OBJECTDIR}/src/escript/reference.o: src/escript/reference.c 
 	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
@@ -161,6 +156,11 @@ ${OBJECTDIR}/src/escript/source.o: src/escript/source.c
 	${MKDIR} -p ${OBJECTDIR}/src/escript
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/source.o src/escript/source.c
+
+${OBJECTDIR}/src/function.o: src/function.c 
+	${MKDIR} -p ${OBJECTDIR}/src
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/function.o src/function.c
 
 ${OBJECTDIR}/src/main.o: src/main.c 
 	${MKDIR} -p ${OBJECTDIR}/src
@@ -209,6 +209,19 @@ ${OBJECTDIR}/src/escript/body_nomain.o: ${OBJECTDIR}/src/escript/body.o src/escr
 	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/body_nomain.o src/escript/body.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/escript/body.o ${OBJECTDIR}/src/escript/body_nomain.o;\
+	fi
+
+${OBJECTDIR}/src/escript/builder_nomain.o: ${OBJECTDIR}/src/escript/builder.o src/escript/builder.c 
+	${MKDIR} -p ${OBJECTDIR}/src/escript
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/builder.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/builder_nomain.o src/escript/builder.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/src/escript/builder.o ${OBJECTDIR}/src/escript/builder_nomain.o;\
 	fi
 
 ${OBJECTDIR}/src/escript/character_nomain.o: ${OBJECTDIR}/src/escript/character.o src/escript/character.c 
@@ -302,32 +315,6 @@ ${OBJECTDIR}/src/escript/oop_nomain.o: ${OBJECTDIR}/src/escript/oop.o src/escrip
 	    ${CP} ${OBJECTDIR}/src/escript/oop.o ${OBJECTDIR}/src/escript/oop_nomain.o;\
 	fi
 
-${OBJECTDIR}/src/escript/operand_nomain.o: ${OBJECTDIR}/src/escript/operand.o src/escript/operand.c 
-	${MKDIR} -p ${OBJECTDIR}/src/escript
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/operand.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/operand_nomain.o src/escript/operand.c;\
-	else  \
-	    ${CP} ${OBJECTDIR}/src/escript/operand.o ${OBJECTDIR}/src/escript/operand_nomain.o;\
-	fi
-
-${OBJECTDIR}/src/escript/operator_nomain.o: ${OBJECTDIR}/src/escript/operator.o src/escript/operator.c 
-	${MKDIR} -p ${OBJECTDIR}/src/escript
-	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/operator.o`; \
-	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
-	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
-	then  \
-	    ${RM} "$@.d";\
-	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/operator_nomain.o src/escript/operator.c;\
-	else  \
-	    ${CP} ${OBJECTDIR}/src/escript/operator.o ${OBJECTDIR}/src/escript/operator_nomain.o;\
-	fi
-
 ${OBJECTDIR}/src/escript/reference_nomain.o: ${OBJECTDIR}/src/escript/reference.o src/escript/reference.c 
 	${MKDIR} -p ${OBJECTDIR}/src/escript
 	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/escript/reference.o`; \
@@ -378,6 +365,19 @@ ${OBJECTDIR}/src/escript/source_nomain.o: ${OBJECTDIR}/src/escript/source.o src/
 	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/escript/source_nomain.o src/escript/source.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/escript/source.o ${OBJECTDIR}/src/escript/source_nomain.o;\
+	fi
+
+${OBJECTDIR}/src/function_nomain.o: ${OBJECTDIR}/src/function.o src/function.c 
+	${MKDIR} -p ${OBJECTDIR}/src
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/function.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/function_nomain.o src/function.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/src/function.o ${OBJECTDIR}/src/function_nomain.o;\
 	fi
 
 ${OBJECTDIR}/src/main_nomain.o: ${OBJECTDIR}/src/main.o src/main.c 
