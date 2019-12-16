@@ -79,9 +79,9 @@ The first set is parameter set. The second set is body set.
 ### Invoke map
 
 ```
-    result = map2(7)                'The result should be 7 * 8 = 56'
-    result = sum(2, 3)              'The result should be 2 + 3 = 5'
-    result = sum(map(1), map(2))    'The result should be 7 - 1 = 6'
+    result = map2(7)                The result should be 56
+    result = sum(2, 3)              The result should be 5
+    result = sum(map(1), map(2))    The result should be 6
 ```
 
 ### Class
