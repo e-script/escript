@@ -31,7 +31,7 @@ void * assign(void * _reference, char * operator, void * _value, void * _context
         exit(-1);
     }
     struct Hash * context = contexts->get(contexts, contexts->size - 1);
-    
+
     if (classOf(_reference) != Reference) {
         fputs("left value of = is not an identifier", stderr);
         exit(-1);
@@ -115,128 +115,134 @@ static void * run(void * _self, void * _contexts) {
     struct Array * firstOperands, * firstOperators,
             * secondOperands, * secondOperators;
 
+    if (self->operands->size == 1 &&
+            classOf(self->operands->get(self->operands, 0)) == Reference) {
+        /*skip this expression, it's a comment word*/
+    } else {
+
 #ifdef VERBOSE
-    printf("expression(");
+        printf("expression(");
 #endif
-    
-    /*mapping operator*/
-    firstOperands = self->operands;
-    firstOperators = self->operators;
-    secondOperands = new(Array);
-    secondOperators = new(Array);
-    secondOperands->append(secondOperands,
-            firstOperands->get(firstOperands, firstOperands->size - 1));
-    for (i = firstOperators->size - 1; i >= 0; i--) {
-        operand = firstOperands->get(firstOperands, i);
-        operator = firstOperators->get(firstOperators, i);
-        if (strcmp(operator, "->") == 0) {
-            function = map(
-                    operand,
-                    secondOperands->pop(secondOperands)
-                    );
-            secondOperands->append(secondOperands, function);
-        } else {
-            secondOperators->append(secondOperators, operator);
-            secondOperands->append(secondOperands, operand);
+
+        /*mapping operator*/
+        firstOperands = self->operands;
+        firstOperators = self->operators;
+        secondOperands = new(Array);
+        secondOperators = new(Array);
+        secondOperands->append(secondOperands,
+                firstOperands->get(firstOperands, firstOperands->size - 1));
+        for (i = firstOperators->size - 1; i >= 0; i--) {
+            operand = firstOperands->get(firstOperands, i);
+            operator = firstOperators->get(firstOperators, i);
+            if (strcmp(operator, "->") == 0) {
+                function = map(
+                        operand,
+                        secondOperands->pop(secondOperands)
+                        );
+                secondOperands->append(secondOperands, function);
+            } else {
+                secondOperators->append(secondOperators, operator);
+                secondOperands->append(secondOperands, operand);
+            }
         }
+
+        /*multiplication operator*/
+        firstOperands = secondOperands;
+        firstOperands->reverse(firstOperands);
+        firstOperators = secondOperators;
+        firstOperators->reverse(firstOperators);
+        secondOperands = new(Array);
+        secondOperators = new(Array);
+        operand = firstOperands->get(firstOperands, firstOperands->size - 1);
+        operand_result = operand->run(operand, _contexts);
+        secondOperands->append(secondOperands, operand_result);
+        for (i = firstOperators->size - 1; i >= 0; i--) {
+            operand = firstOperands->get(firstOperands, i);
+            operator = firstOperators->get(firstOperators, i);
+            if (strcmp(operator, "=") != 0) {
+                operand_result = operand->run(operand, _contexts);
+            } else {
+                operand_result = operand;
+            }
+            if (strcmp(operator, "*") == 0 || strcmp(operator, "/") == 0) {
+                operand_result = multiply(
+                        operand_result,
+                        operator,
+                        secondOperands->pop(secondOperands)
+                        );
+                secondOperands->append(secondOperands, operand_result);
+#ifdef VERBOSE
+                printf("operator_%s ", operator);
+#endif
+            } else {
+                secondOperators->append(secondOperators, operator);
+                secondOperands->append(secondOperands, operand_result);
+            }
+        }
+
+        /*accumulation operator*/
+        firstOperands = secondOperands;
+        firstOperands->reverse(firstOperands);
+        firstOperators = secondOperators;
+        firstOperators->reverse(firstOperators);
+        secondOperands = new(Array);
+        secondOperators = new(Array);
+        operand_result = firstOperands->get(firstOperands, firstOperands->size - 1);
+        secondOperands->append(secondOperands, operand_result);
+        for (i = firstOperators->size - 1; i >= 0; i--) {
+            operand_result = firstOperands->get(firstOperands, i);
+            operator = firstOperators->get(firstOperators, i);
+            if (strcmp(operator, "+") == 0 || strcmp(operator, "-") == 0) {
+                operand_result = accumulate(
+                        operand_result,
+                        operator,
+                        secondOperands->pop(secondOperands)
+                        );
+                secondOperands->append(secondOperands, operand_result);
+#ifdef VERBOSE
+                printf("operator_%s ", operator);
+#endif
+            } else {
+                secondOperators->append(secondOperators, operator);
+                secondOperands->append(secondOperands, operand_result);
+            }
+        }
+
+        /*assignment operator*/
+        firstOperands = secondOperands;
+        firstOperands->reverse(firstOperands);
+        firstOperators = secondOperators;
+        firstOperators->reverse(firstOperators);
+        secondOperands = new(Array);
+        secondOperators = new(Array);
+        operand_result = firstOperands->get(firstOperands, firstOperands->size - 1);
+        secondOperands->append(secondOperands, operand_result);
+        for (i = firstOperators->size - 1; i >= 0; i--) {
+            operand_result = firstOperands->get(firstOperands, i);
+            operator = firstOperators->get(firstOperators, i);
+            if (strcmp(operator, "=") == 0) {
+                operand_result = assign(
+                        operand_result,
+                        operator,
+                        secondOperands->pop(secondOperands),
+                        _contexts
+                        );
+                secondOperands->append(secondOperands, operand_result);
+#ifdef VERBOSE
+                printf("operator_%s ", operator);
+#endif
+            } else {
+                fputs("undefined operator", stderr);
+                exit(-1);
+            }
+        }
+        result = secondOperands->pop(secondOperands);
+
+#ifdef VERBOSE
+        printf(")\n");
+#endif
     }
 
-    /*multiplication operator*/
-    firstOperands = secondOperands;
-    firstOperands->reverse(firstOperands);
-    firstOperators = secondOperators;
-    firstOperators->reverse(firstOperators);
-    secondOperands = new(Array);
-    secondOperators = new(Array);
-    operand = firstOperands->get(firstOperands, firstOperands->size - 1);
-    operand_result = operand->run(operand, _contexts);
-    secondOperands->append(secondOperands, operand_result);
-    for (i = firstOperators->size - 1; i >= 0; i--) {
-        operand = firstOperands->get(firstOperands, i);
-        operator = firstOperators->get(firstOperators, i);
-        if (strcmp(operator, "=") != 0) {
-            operand_result = operand->run(operand, _contexts);
-        } else {
-            operand_result = operand;
-        }
-        if (strcmp(operator, "*") == 0 || strcmp(operator, "/") == 0) {
-            operand_result = multiply(
-                    operand_result,
-                    operator,
-                    secondOperands->pop(secondOperands)
-                    );
-            secondOperands->append(secondOperands, operand_result);
-#ifdef VERBOSE
-            printf("operator_%s ", operator);
-#endif
-        } else {
-            secondOperators->append(secondOperators, operator);
-            secondOperands->append(secondOperands, operand_result);
-        }
-    }
-
-    /*accumulation operator*/
-    firstOperands = secondOperands;
-    firstOperands->reverse(firstOperands);
-    firstOperators = secondOperators;
-    firstOperators->reverse(firstOperators);
-    secondOperands = new(Array);
-    secondOperators = new(Array);
-    operand_result = firstOperands->get(firstOperands, firstOperands->size - 1);
-    secondOperands->append(secondOperands, operand_result);
-    for (i = firstOperators->size - 1; i >= 0; i--) {
-        operand_result = firstOperands->get(firstOperands, i);
-        operator = firstOperators->get(firstOperators, i);
-        if (strcmp(operator, "+") == 0 || strcmp(operator, "-") == 0) {
-            operand_result = accumulate(
-                    operand_result,
-                    operator,
-                    secondOperands->pop(secondOperands)
-                    );
-            secondOperands->append(secondOperands, operand_result);
-#ifdef VERBOSE
-            printf("operator_%s ", operator);
-#endif
-        } else {
-            secondOperators->append(secondOperators, operator);
-            secondOperands->append(secondOperands, operand_result);
-        }
-    }
-
-    /*assignment operator*/
-    firstOperands = secondOperands;
-    firstOperands->reverse(firstOperands);
-    firstOperators = secondOperators;
-    firstOperators->reverse(firstOperators);
-    secondOperands = new(Array);
-    secondOperators = new(Array);
-    operand_result = firstOperands->get(firstOperands, firstOperands->size - 1);
-    secondOperands->append(secondOperands, operand_result);
-    for (i = firstOperators->size - 1; i >= 0; i--) {
-        operand_result = firstOperands->get(firstOperands, i);
-        operator = firstOperators->get(firstOperators, i);
-        if (strcmp(operator, "=") == 0) {
-            operand_result = assign(
-                    operand_result,
-                    operator,
-                    secondOperands->pop(secondOperands),
-                    _contexts
-                    );
-            secondOperands->append(secondOperands, operand_result);
-#ifdef VERBOSE
-            printf("operator_%s ", operator);
-#endif
-        } else {
-            fputs("undefined operator", stderr);
-            exit(-1);
-        }
-    }
-
-    /*result = secondOperands->pop(secondOperands);*/
-
-#ifdef VERBOSE
-    printf(") ");
-#endif
 
     return result;
 }

@@ -18,9 +18,6 @@ static void * run(void * _self, void * _contexts) {
     for (i = 0; i < self->operands->size; i++) {
         operand = self->operands->get(self->operands, i);
         operand->run(operand, contexts);
-#ifdef VERBOSE
-        printf("\n");
-#endif
     }
 
 #ifdef VERBOSE

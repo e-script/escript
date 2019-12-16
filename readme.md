@@ -172,6 +172,18 @@ are all considered `space` and are bypassed by the interpreter.
 
 * Execution order: mapping first -> then `*`, `/` -> then `+`, `-` -> then assignment
 
+## Comment
+
+You just type the comment directly into source code.
+
+```
+    This function calculate the sum of two number
+    sum = { a = 0, b = 0 } -> {
+        result = a + b
+    }
+    sum(1, 2)
+```
+
 ## Development
 
 Requirements: GCC compiler
