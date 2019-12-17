@@ -23,10 +23,11 @@
 
 #define TOKEN_NAME      0
 #define TOKEN_NUMBER    1
-#define TOKEN_OPERATOR  2
-#define TOKEN_BRACKET   3
-#define TOKEN_QUOTATION 4
-#define TOKEN_DELIMETER 5
+#define TOKEN_STRING    2
+#define TOKEN_OPERATOR  3
+#define TOKEN_BRACKET   4
+#define TOKEN_QUOTATION 5
+#define TOKEN_DELIMETER 6
 #define TOKEN_UNKNOWN   -1
 
 int get_char_type(char c);

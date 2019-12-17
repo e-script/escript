@@ -90,10 +90,29 @@ static char * getNextToken(void * _self) {
 
     /* detect token */
     size_t finishOffset = startOffset + 1;
-    while (finishOffset < self->length
-            && get_char_type(self->value[finishOffset]) == get_char_type(self->value[startOffset])
-            && get_char_type(self->value[finishOffset]) != CHAR_BRACKET) {
-        finishOffset += 1;
+
+    if (self->value[startOffset] == '\'') {
+        /*string*/
+        int escape = 0;
+        while (finishOffset < self->length
+                && (self->value[finishOffset] != '\'' || escape == 1)) {
+            if (self->value[finishOffset] == '\\') {
+                escape = 1 - escape;
+            } else {
+                escape = 0;
+            }
+            finishOffset += 1;
+        }
+        if (finishOffset < self->length) {
+            finishOffset += 1;
+        }
+    } else {
+        /*others*/
+        while (finishOffset < self->length
+                && get_char_type(self->value[finishOffset]) == get_char_type(self->value[startOffset])
+                && get_char_type(self->value[finishOffset]) != CHAR_BRACKET) {
+            finishOffset += 1;
+        }
     }
 
     /* copy token */
@@ -121,10 +140,29 @@ static char * popNextToken(void * _self) {
 
     /* detect token */
     size_t newOffset = self->offset + 1;
-    while (newOffset < self->length
-            && get_char_type(self->value[newOffset]) == get_char_type(self->value[self->offset])
-            && get_char_type(self->value[newOffset]) != CHAR_BRACKET) {
-        newOffset += 1;
+    
+    if (self->value[self->offset] == '\'') {
+        /*string*/
+        int escape = 0;
+        while (newOffset < self->length
+                && (self->value[newOffset] != '\'' || escape == 1)) {
+            if (self->value[newOffset] == '\\') {
+                escape = 1 - escape;
+            } else {
+                escape = 0;
+            }
+            newOffset += 1;
+        }
+        if (newOffset < self->length) {
+            newOffset += 1;
+        }
+    } else {
+        /*others*/
+        while (newOffset < self->length
+                && get_char_type(self->value[newOffset]) == get_char_type(self->value[self->offset])
+                && get_char_type(self->value[newOffset]) != CHAR_BRACKET) {
+            newOffset += 1;
+        }
     }
 
     /* copy token */

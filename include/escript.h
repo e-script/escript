@@ -65,6 +65,13 @@ struct Number {
 };
 const void * Number;
 
+struct String {
+    struct Operand parent;
+
+    char * value;
+};
+const void * String;
+
 struct Reference {
     struct Operand parent;
 
@@ -125,6 +132,12 @@ struct NumberValue {
     int value;
 };
 const void * NumberValue;
+
+struct StringValue {
+    struct Value parent;
+    char * value;
+};
+const void * StringValue;
 
 struct SetValue {
     struct Value parent;

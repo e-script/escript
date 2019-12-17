@@ -22,7 +22,7 @@ int get_char_type(char c) {
             || c == '(' || c == ')') {
         return CHAR_BRACKET;
     }
-    if (c == '\'' || c == '"' || c == '`') {
+    if (c == '"' || c == '`') {
         return CHAR_QUOTATION;
     }
     if (c == ',') {
@@ -63,6 +63,9 @@ int get_token_type(char * token) {
         }
         if (getCharType2(c) == CHAR_DELIMETER) {
             return TOKEN_DELIMETER;
+        }
+        if (c == '\'') {
+            return TOKEN_STRING;
         }
     }
     return TOKEN_UNKNOWN;

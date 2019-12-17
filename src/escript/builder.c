@@ -150,6 +150,8 @@ void * operand_build(void * _source) {
 
         if (nextTokenType() == TOKEN_NUMBER) {
             operand = new(Number, atoi(popNextToken()));
+        } else if (nextTokenType() == TOKEN_STRING) {
+            operand = new(String, popNextToken());
         } else if (nextTokenType() == TOKEN_NAME) {
             name = popNextToken();
             if (hasNextToken() && nextTokenIs("(")) {
