@@ -147,7 +147,7 @@ const void * ArrayValue;
 struct Function {
     struct Operand parent;
 
-    struct Set * params;
+    struct Set * arguments;
     struct Set * body;
 };
 const void * Function;

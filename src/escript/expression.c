@@ -149,7 +149,11 @@ static void * run(void * _self, void * _contexts) {
     secondOperands = new(Stack);
     secondOperators = new(Stack);
     operand = firstOperands->get(firstOperands, firstOperands->size - 1);
-    operand_result = operand->run(operand, _contexts);
+    if (classOf(operand) != Function) {
+        operand_result = operand->run(operand, _contexts);
+    } else {
+        operand_result = operand;
+    }
     secondOperands->append(secondOperands, operand_result);
     for (i = firstOperators->size - 1; i >= 0; i--) {
         operand = firstOperands->get(firstOperands, i);

@@ -87,7 +87,7 @@ static void * invoke_build(void * _source, char * name) {
         }
         operand = operand_build(_source);
         if (operand == NULL) {
-            fputs("')' is expected", stderr);
+            fputs("param is expected", stderr);
             exit(-1);
         }
         operands->append(operands, operand);

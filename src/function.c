@@ -13,7 +13,7 @@ static void * run(void * _self, void * _contexts) {
 static void * constructor(void * _self, va_list * params) {
     struct Function * self = _self;
 
-    self->params = va_arg(*params, struct Set *);
+    self->arguments = va_arg(*params, struct Set *);
     self->body = va_arg(*params, struct Set *);
     self->parent.run = run;
 

@@ -1,6 +1,8 @@
 #include "escript.h"
 
 static void * run(void * _self, void * _contexts) {
+    void * result = NULL;
+
     struct Invoke * self = _self;
 
     struct Stack * contexts = _contexts;
@@ -8,22 +10,23 @@ static void * run(void * _self, void * _contexts) {
     struct Function * function;
     struct Operand * operand;
     void * operand_result;
-    struct SetValue * param_result;
-    struct Stack * operand_results = new(Stack);/*
+    struct SetValue * arguments_result;
+    struct SetValue * body_result;
+    struct Stack * params;
+    int i;
 
 #ifdef VERBOSE
     printf("invoke_%s(", self->name);
 #endif
-    int i;
+    /*run params*/
+    params = new(Stack);
     for (i = 0; i < self->operands->size; i++) {
         operand = self->operands->get(self->operands, i);
         operand_result = operand->run(operand, _contexts);
-        operand_results->append(operand_results, operand_result);
+        params->append(params, operand_result);
     }
-#ifdef VERBOSE
-    printf(") ");
-#endif
 
+    /*get function*/
     for (i = contexts->size - 1; i >= 0; i--) {
         context = contexts->get(contexts, i);
         if (context->contains(context, self->name)) {
@@ -41,19 +44,27 @@ static void * run(void * _self, void * _contexts) {
         fputs("reference_is_not_a_function", stderr);
         exit(-1);
     }
-    
-    operand_result = function->params->parent.run(function->params, _contexts);
-    if (classOf(operand_result) != SetValue)
-    {
-        fputs("params_set_does_not_return_a_set_value", stderr);
-        exit(-1);
-    }
-    
-    param_result = operand_result;
-    
-    */
+    function = (struct Function *) operand;
 
-    return NULL;
+    /*run arguments*/
+    context = new(Hash);
+    context->set(context, "params", new(ArrayValue, params));
+    contexts->append(contexts, context);
+
+    arguments_result = function->arguments->parent.run(function->arguments, _contexts);
+
+    context = arguments_result->values;
+    contexts->append(contexts, context);
+
+    /*run body*/
+    body_result = function->body->parent.run(function->body, _contexts);
+
+    result = body_result->values->get(body_result->values, "result");
+
+    contexts->pop(contexts);
+    contexts->pop(contexts);
+
+    return result;
 }
 
 static void * constructor(void * _self, va_list * params) {
