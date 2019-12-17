@@ -186,7 +186,7 @@ You just type the comment directly into source code.
 
 ## Development
 
-Requirements: GCC compiler
+Requirements: GCC compiler - Ansi C (C89)
 
 1. Clone git repo:
 

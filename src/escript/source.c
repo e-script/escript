@@ -91,7 +91,8 @@ static char * getNextToken(void * _self) {
     /* detect token */
     size_t finishOffset = startOffset + 1;
     while (finishOffset < self->length
-            && get_char_type(self->value[finishOffset]) == get_char_type(self->value[startOffset])) {
+            && get_char_type(self->value[finishOffset]) == get_char_type(self->value[startOffset])
+            && get_char_type(self->value[finishOffset]) != CHAR_BRACKET) {
         finishOffset += 1;
     }
 
@@ -121,7 +122,8 @@ static char * popNextToken(void * _self) {
     /* detect token */
     size_t newOffset = self->offset + 1;
     while (newOffset < self->length
-            && get_char_type(self->value[newOffset]) == get_char_type(self->value[self->offset])) {
+            && get_char_type(self->value[newOffset]) == get_char_type(self->value[self->offset])
+            && get_char_type(self->value[newOffset]) != CHAR_BRACKET) {
         newOffset += 1;
     }
 
