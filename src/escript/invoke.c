@@ -1,5 +1,40 @@
 #include "escript.h"
 
+static char * cut(char * name) {
+    char * result = NULL;
+
+    int i;
+    for (i = strlen(name) - 1; i >= 0; i--) {
+        if (name[i] == '.') {
+            result = calloc(sizeof (char), i + 1);
+            memcpy(result, name, i);
+        }
+    }
+
+    return result;
+}
+
+static void * get(void * _contexts, char * name) {
+    void * result = NULL;
+
+    struct Stack * contexts = _contexts;
+    struct Hash * context;
+
+    int i;
+
+    if (name != NULL) {
+        for (i = contexts->size - 1; i >= 0; i--) {
+            context = contexts->get(contexts, i);
+            if (context->contains(context, name)) {
+                result = context->get(context, name);
+                break;
+            }
+        }
+    }
+
+    return result;
+}
+
 static void * run(void * _self, void * _contexts) {
     void * result = NULL;
 
@@ -9,6 +44,7 @@ static void * run(void * _self, void * _contexts) {
     struct Hash * context;
     struct Function * function;
     struct Operand * operand;
+    void * set_value;
     void * operand_result;
     struct SetValue * arguments_result;
     struct SetValue * body_result;
@@ -27,13 +63,7 @@ static void * run(void * _self, void * _contexts) {
     }
 
     /*get function*/
-    for (i = contexts->size - 1; i >= 0; i--) {
-        context = contexts->get(contexts, i);
-        if (context->contains(context, self->name)) {
-            operand = context->get(context, self->name);
-            break;
-        }
-    }
+    operand = get(_contexts, self->name);
 
     if (operand == NULL) {
         fputs("unknown_invoke_reference", stderr);
@@ -46,6 +76,8 @@ static void * run(void * _self, void * _contexts) {
     }
     function = (struct Function *) operand;
 
+    set_value = get(_contexts, cut(self->name));
+
     /*run arguments*/
     context = new(Hash);
     context->set(context, "params", new(ArrayValue, params));
@@ -56,11 +88,21 @@ static void * run(void * _self, void * _contexts) {
     context = arguments_result->values;
     contexts->append(contexts, context);
 
+    /*get parent*/
+    if (set_value != NULL) {
+        context = new(Hash);
+        context->set(context, "parent", set_value);
+        contexts->append(contexts, context);
+    }
+
     /*run body*/
     body_result = function->body->parent.run(function->body, _contexts);
 
     result = body_result->values->get(body_result->values, "result");
 
+    if (set_value != NULL) {
+        contexts->pop(contexts);
+    }
     contexts->pop(contexts);
     contexts->pop(contexts);
 
