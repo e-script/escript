@@ -12,10 +12,6 @@ void * map(void * _params, void * _body) {
         exit(-1);
     }
 
-#ifdef VERBOSE
-    printf("function ");
-#endif
-
     result = new(Function, _params, _body);
 
     return result;
@@ -25,8 +21,8 @@ void * assign(void * _reference, char * operator, void * _value, void * _context
     void * result = NULL;
 
     struct Reference * reference = _reference;
-    struct Array * contexts = _contexts;
-    if (classOf(_contexts) != Array) {
+    struct Stack * contexts = _contexts;
+    if (classOf(_contexts) != Stack) {
         fputs("invalid contexts", stderr);
         exit(-1);
     }
@@ -112,7 +108,7 @@ static void * run(void * _self, void * _contexts) {
     void * operand_result;
     int i;
 
-    struct Array * firstOperands, * firstOperators,
+    struct Stack * firstOperands, * firstOperators,
             * secondOperands, * secondOperators;
 
 
@@ -123,8 +119,8 @@ static void * run(void * _self, void * _contexts) {
     /*mapping operator*/
     firstOperands = self->operands;
     firstOperators = self->operators;
-    secondOperands = new(Array);
-    secondOperators = new(Array);
+    secondOperands = new(Stack);
+    secondOperators = new(Stack);
     secondOperands->append(secondOperands,
             firstOperands->get(firstOperands, firstOperands->size - 1));
     for (i = firstOperators->size - 1; i >= 0; i--) {
@@ -136,6 +132,9 @@ static void * run(void * _self, void * _contexts) {
                     secondOperands->pop(secondOperands)
                     );
             secondOperands->append(secondOperands, function);
+#ifdef VERBOSE
+            printf("operator_%s ", operator);
+#endif
         } else {
             secondOperators->append(secondOperators, operator);
             secondOperands->append(secondOperands, operand);
@@ -147,8 +146,8 @@ static void * run(void * _self, void * _contexts) {
     firstOperands->reverse(firstOperands);
     firstOperators = secondOperators;
     firstOperators->reverse(firstOperators);
-    secondOperands = new(Array);
-    secondOperators = new(Array);
+    secondOperands = new(Stack);
+    secondOperators = new(Stack);
     operand = firstOperands->get(firstOperands, firstOperands->size - 1);
     operand_result = operand->run(operand, _contexts);
     secondOperands->append(secondOperands, operand_result);
@@ -181,8 +180,8 @@ static void * run(void * _self, void * _contexts) {
     firstOperands->reverse(firstOperands);
     firstOperators = secondOperators;
     firstOperators->reverse(firstOperators);
-    secondOperands = new(Array);
-    secondOperators = new(Array);
+    secondOperands = new(Stack);
+    secondOperators = new(Stack);
     operand_result = firstOperands->get(firstOperands, firstOperands->size - 1);
     secondOperands->append(secondOperands, operand_result);
     for (i = firstOperators->size - 1; i >= 0; i--) {
@@ -209,8 +208,8 @@ static void * run(void * _self, void * _contexts) {
     firstOperands->reverse(firstOperands);
     firstOperators = secondOperators;
     firstOperators->reverse(firstOperators);
-    secondOperands = new(Array);
-    secondOperators = new(Array);
+    secondOperands = new(Stack);
+    secondOperators = new(Stack);
     operand_result = firstOperands->get(firstOperands, firstOperands->size - 1);
     secondOperands->append(secondOperands, operand_result);
     for (i = firstOperators->size - 1; i >= 0; i--) {
@@ -245,8 +244,8 @@ static void * run(void * _self, void * _contexts) {
 static void * constructor(void * _self, va_list * params) {
     struct Expression * self = _self;
 
-    self->operands = va_arg(*params, struct Array *);
-    self->operators = va_arg(*params, struct Array *);
+    self->operands = va_arg(*params, struct Stack *);
+    self->operators = va_arg(*params, struct Stack *);
     self->parent.run = run;
 
     return self;

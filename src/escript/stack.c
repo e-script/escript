@@ -3,7 +3,7 @@
 static int append(void * _self, void * element) {
     int result = -1;
 
-    struct Array * self = _self;
+    struct Stack * self = _self;
     void ** tmp;
 
     self->elements[self->size] = element;
@@ -30,7 +30,7 @@ static int append(void * _self, void * element) {
 static void * get(void * _self, size_t index) {
     void * result = NULL;
 
-    struct Array * self = _self;
+    struct Stack * self = _self;
     if (index >= 0 && index < self->size) {
         result = self->elements[index];
     }
@@ -39,7 +39,7 @@ static void * get(void * _self, size_t index) {
 }
 
 static void * pop(void * _self) {
-    struct Array * self = _self;
+    struct Stack * self = _self;
 
     void * result = get(_self, self->size - 1);
 
@@ -52,7 +52,7 @@ static void * pop(void * _self) {
 }
 
 static void reverse(void * _self) {
-    struct Array * self = _self;
+    struct Stack * self = _self;
     
     void * tmp;
 
@@ -65,7 +65,7 @@ static void reverse(void * _self) {
 }
 
 static void * constructor(void * _self, va_list * params) {
-    struct Array * self = _self;
+    struct Stack * self = _self;
 
     self->size = 0;
     self->buffer_size = 1;
@@ -79,9 +79,9 @@ static void * constructor(void * _self, va_list * params) {
     return self;
 }
 
-static const struct Class _Array = {
-    sizeof (struct Array),
+static const struct Class _Stack = {
+    sizeof (struct Stack),
     constructor, 0, 0, 0
 };
 
-const void * Array = &_Array;
+const void * Stack = &_Stack;

@@ -5,7 +5,7 @@ void * set_build(void * _source) {
 
     struct Source * source = _source;
 
-    struct Array * operands = new(Array);
+    struct Stack * operands = new(Stack);
 
     void * operand;
 
@@ -32,12 +32,44 @@ void * set_build(void * _source) {
     return result;
 }
 
+static void * array_build(void * _source) {
+    void * result = NULL;
+
+    struct Source * source = _source;
+
+    struct Stack * operands = new(Stack);
+
+    void * operand;
+
+#define hasNextToken()(source->hasNextToken(source))
+#define popNextToken()(source->popNextToken(source))
+#define nextTokenType()(get_token_type(source->getNextToken(source)))
+#define nextTokenIs(token)(strcmp(source->getNextToken(source), token) == 0)
+#define matchToken(token)(source->matchToken(source, token))
+
+    while (hasNextToken()) {
+        if (nextTokenIs("]")) {
+            break;
+        }
+        operand = operand_build(_source);
+        if (operand == NULL) {
+            fputs("operand is expected", stderr);
+            exit(-1);
+        }
+        operands->append(operands, operand);
+    }
+
+    result = new(Array, operands);
+
+    return result;
+}
+
 static void * invoke_build(void * _source, char * name) {
     void * result = NULL;
 
     struct Source * source = _source;
 
-    struct Array * operands = new(Array);
+    struct Stack * operands = new(Stack);
     void * operand;
 
 #define hasNextToken()(source->hasNextToken(source))
@@ -59,15 +91,38 @@ static void * invoke_build(void * _source, char * name) {
             exit(-1);
         }
         operands->append(operands, operand);
-        if (nextTokenIs(",")) {
-            popNextToken();
-        } else if (!nextTokenIs(")")) {
-            fputs("')' is expected", stderr);
-            exit(-1);
-        }
     }
 
     matchToken(")");
+
+    return result;
+}
+
+void * locate_build(void * _source, char * name) {
+    void * result = NULL;
+
+    struct Source * source = _source;
+
+    void * operand;
+
+#define hasNextToken()(source->hasNextToken(source))
+#define popNextToken()(source->popNextToken(source))
+#define nextTokenType()(get_token_type(source->getNextToken(source)))
+#define nextTokenIs(token)(strcmp(source->getNextToken(source), token) == 0)
+#define matchToken(token)(source->matchToken(source, token))
+
+    matchToken("[");
+
+    operand = operand_build(_source);
+
+    if (operand == NULL) {
+        fputs("locate_expression_is_required", stderr);
+        exit(-1);
+    }
+
+    result = new(Locate, name, operand);
+
+    matchToken("]");
 
     return result;
 }
@@ -77,8 +132,8 @@ void * operand_build(void * _source) {
 
     struct Source * source = _source;
 
-    struct Array * operands = new(Array);
-    struct Array * operators = new(Array);
+    struct Stack * operands = new(Stack);
+    struct Stack * operators = new(Stack);
     void * operand;
 
 #define hasNextToken()(source->hasNextToken(source))
@@ -99,6 +154,8 @@ void * operand_build(void * _source) {
             name = popNextToken();
             if (hasNextToken() && nextTokenIs("(")) {
                 operand = invoke_build(source, name);
+            } else if (hasNextToken() && nextTokenIs("[")) {
+                operand = locate_build(source, name);
             } else {
                 operand = new(Reference, name);
             }
@@ -106,6 +163,10 @@ void * operand_build(void * _source) {
             matchToken("{");
             operand = set_build(source);
             matchToken("}");
+        } else if (nextTokenIs("[")) {
+            matchToken("[");
+            operand = array_build(source);
+            matchToken("]");
         }
 
         if (operand == NULL) {

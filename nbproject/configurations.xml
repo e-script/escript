@@ -23,12 +23,14 @@
         <itemPath>samples/sample1.e</itemPath>
         <itemPath>samples/sample2.e</itemPath>
         <itemPath>samples/sample3.e</itemPath>
+        <itemPath>sample4.e</itemPath>
       </logicalFolder>
     </logicalFolder>
     <logicalFolder name="SourceFiles" displayName="Sources" projectFiles="true">
       <logicalFolder name="src" displayName="src" projectFiles="true">
         <logicalFolder name="escript" displayName="escript" projectFiles="true">
-          <itemPath>src/escript/array.c</itemPath>
+          <itemPath>src/array.c</itemPath>
+          <itemPath>src/array_value.c</itemPath>
           <itemPath>src/escript/body.c</itemPath>
           <itemPath>src/escript/builder.c</itemPath>
           <itemPath>src/escript/character.c</itemPath>
@@ -36,6 +38,7 @@
           <itemPath>src/function.c</itemPath>
           <itemPath>src/escript/hash.c</itemPath>
           <itemPath>src/escript/invoke.c</itemPath>
+          <itemPath>src/locate.c</itemPath>
           <itemPath>src/escript/number.c</itemPath>
           <itemPath>src/escript/number_value.c</itemPath>
           <itemPath>src/escript/oop.c</itemPath>
@@ -43,6 +46,7 @@
           <itemPath>src/escript/set.c</itemPath>
           <itemPath>src/escript/set_value.c</itemPath>
           <itemPath>src/escript/source.c</itemPath>
+          <itemPath>src/escript/stack.c</itemPath>
         </logicalFolder>
         <itemPath>src/main.c</itemPath>
       </logicalFolder>
@@ -113,6 +117,8 @@
       </item>
       <item path="include/oop.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="sample4.e" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="samples/sample0.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample1.e" ex="false" tool="3" flavor2="0">
@@ -121,7 +127,9 @@
       </item>
       <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
+      <item path="src/array.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/array_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/body.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -149,7 +157,11 @@
       </item>
       <item path="src/escript/source.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/escript/stack.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="src/function.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/locate.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/main.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -203,6 +215,8 @@
       </item>
       <item path="include/oop.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="sample4.e" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="samples/sample0.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample1.e" ex="false" tool="3" flavor2="0">
@@ -211,7 +225,9 @@
       </item>
       <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
+      <item path="src/array.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/array_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/body.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -239,7 +255,11 @@
       </item>
       <item path="src/escript/source.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/escript/stack.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="src/function.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/locate.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/main.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -296,6 +316,8 @@
       </item>
       <item path="include/oop.h" ex="false" tool="3" flavor2="0">
       </item>
+      <item path="sample4.e" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="samples/sample0.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample1.e" ex="false" tool="3" flavor2="0">
@@ -304,7 +326,9 @@
       </item>
       <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
       </item>
-      <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
+      <item path="src/array.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/array_value.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/body.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -332,7 +356,11 @@
       </item>
       <item path="src/escript/source.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/escript/stack.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="src/function.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/locate.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/main.c" ex="false" tool="0" flavor2="0">
       </item>

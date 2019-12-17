@@ -7,7 +7,7 @@ static void * run(void * _self, void * _contexts) {
     struct Operand * operand;
     struct Expression * expression;
 
-    struct Array * contexts = _contexts;
+    struct Stack * contexts = _contexts;
     struct Hash * context = new(Hash);
     contexts->append(contexts, context);
 
@@ -43,7 +43,7 @@ static void * run(void * _self, void * _contexts) {
 static void * constructor(void * _self, va_list * params) {
     struct Set * self = _self;
 
-    self->operands = va_arg(*params, struct Array *);
+    self->operands = va_arg(*params, struct Stack *);
 
     self->parent.run = run;
 

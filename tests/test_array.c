@@ -20,7 +20,7 @@ void test1() {
 
     int a = 5, b = 6;
 
-    struct Array * array = new(Array);
+    struct Stack * array = new(Stack);
     array->append(array, &a);
     array->append(array, &b);
     if (array->size != 2) {

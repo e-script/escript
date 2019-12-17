@@ -30,7 +30,7 @@ int main(int param_count, char ** params) {
 #ifdef VERBOSE
             printf("Run:\n");
 #endif
-            struct Array * contexts = new(Array);
+            struct Stack * contexts = new(Stack);
             struct NumberValue * result = source->run(source, contexts);
             printf("result: %d\n", result->value);
         }

@@ -5,7 +5,7 @@ static void build(void * _self, void * _source) {
     struct Body * self = _self;
     struct Source * source = _source;
 
-    self->operands = new(Array);
+    self->operands = new(Stack);
 
     while (source->hasNextToken(source)) {
         struct Operand * operand = operand_build(_source);
@@ -21,7 +21,7 @@ static void * run(void * _self, void * _contexts) {
 
     struct Body * self = _self;
     struct Operand * operand;
-    struct Array * contexts = _contexts;
+    struct Stack * contexts = _contexts;
 
     struct Hash * context = new(Hash);
 

@@ -5,7 +5,7 @@ static void * run(void * _self, void * _contexts) {
 
     struct Reference * self = _self;
 
-    struct Array * contexts = _contexts;
+    struct Stack * contexts = _contexts;
     struct Hash * context;
 
 #ifdef VERBOSE

@@ -166,8 +166,8 @@ static void * constructor(void * _self, va_list * params) {
     struct Hash * self = _self;
 
     self->size = 0;
-    self->keys = new(Array);
-    self->entries = new(Array);
+    self->keys = new(Stack);
+    self->entries = new(Stack);
 
     /*init null*/
     self->keys->append(self->keys, "null");

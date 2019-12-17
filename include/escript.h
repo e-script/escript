@@ -19,9 +19,9 @@
 #include "charaters.h"
 
 /*
- Array
+ Stack
  */
-struct Array {
+struct Stack {
     const void * class;
 
     int size;
@@ -33,14 +33,14 @@ struct Array {
     void * (* pop)(void * _self);
     void (* reverse)(void * _self);
 };
-const void * Array;
+const void * Stack;
 
 struct Hash {
     const void * class;
 
     int size;
-    struct Array * keys;
-    struct Array * entries;
+    struct Stack * keys;
+    struct Stack * entries;
 
     void (* set)(void * _self, char * key, void * element);
     int (* contains)(void * _self, char * key);
@@ -75,15 +75,22 @@ const void * Reference;
 struct Set {
     struct Operand parent;
 
-    struct Array * operands;
+    struct Stack * operands;
 };
 const void * Set;
+
+struct Array {
+    struct Operand parent;
+
+    struct Stack * operands;
+};
+const void * Array;
 
 struct Expression {
     struct Operand parent;
 
-    struct Array * operands;
-    struct Array * operators;
+    struct Stack * operands;
+    struct Stack * operators;
 };
 const void * Expression;
 
@@ -91,9 +98,17 @@ struct Invoke {
     struct Operand parent;
 
     char * name;
-    struct Array * operands;
+    struct Stack * operands;
 };
 const void * Invoke;
+
+struct Locate {
+    struct Operand parent;
+
+    char * name;
+    struct Operand * operand;
+};
+const void * Locate;
 
 void * set_build(void * _source);
 void * operand_build(void * _source);
@@ -119,6 +134,13 @@ struct SetValue {
 
 const void * SetValue;
 
+struct ArrayValue {
+    struct Operand parent;
+
+    struct Stack * values;
+};
+const void * ArrayValue;
+
 /*
  Function
  */
@@ -136,7 +158,7 @@ const void * Function;
 struct Body {
     const void * class;
 
-    struct Array * operands;
+    struct Stack * operands;
 
     void (* build)(void * _self, void * _source);
     void * (* run)(void * _self, void * _contexts);
