@@ -33,7 +33,8 @@ int main(int param_count, char ** params) {
 #endif
             struct Stack * contexts = new(Stack);
             struct Hash * context = new(Hash);
-            context->set(context, "console", init_stdio());
+            context->set(context, "console", init_console());
+            context->set(context, "network", init_network());
             contexts->append(contexts, context);
             void * result = source->run(source, contexts);
         }

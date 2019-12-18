@@ -18,30 +18,32 @@ static void * fix_string(char * string) {
     int size = 0;
     int escape = 0;
     for (i = 1; i < len - 1; i++) {
-        if (escape) {
-            if (string[i] == 'r') {
-                result[size] = '\r';
-            } else if (string[i] == '\n') {
-                result[size] = '\n';
-            } else if (string[i] == '\t') {
-                result[size] = '\t';
-            } else if (string[i] == '\f') {
-                result[size] = '\f';
-            } else if (string[i] == '\'') {
-                result[size] = '\'';
-            } else {
-                fputs("invalid escape", stderr);
-                exit(-1);
-            }
-        } else
-            if (string[i] == '\\') {
-            escape = 1 - escape;
-            result[size] = '\\';
+        if (string[i] == '\\' && !escape) {
+            escape = 1;
         } else {
+            if (escape) {
+                if (string[i] == 'r') {
+                    result[size] = '\r';
+                } else if (string[i] == 'n') {
+                    result[size] = '\n';
+                } else if (string[i] == 't') {
+                    result[size] = '\t';
+                } else if (string[i] == 'f') {
+                    result[size] = '\f';
+                } else if (string[i] == '\'') {
+                    result[size] = '\'';
+                } else if (string[i] == '\\') {
+                    result[size] = '\\';
+                } else {
+                    fputs("invalid escape", stderr);
+                    exit(-1);
+                }
+            } else {
+                result[size] = string[i];
+            }
+            size += 1;
             escape = 0;
-            result[size] = string[i];
         }
-        size += 1;
     }
 
     return result;

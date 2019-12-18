@@ -49,7 +49,7 @@ static void * writeln(void * _self, void * _contexts) {
     return result;
 }
 
-void * init_stdio() {
+void * init_console() {
     struct SetValue * result = NULL;
 
     struct Hash * hash = new(Hash);

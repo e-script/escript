@@ -31,6 +31,7 @@
       <logicalFolder name="src" displayName="src" projectFiles="true">
         <logicalFolder name="builtin" displayName="builtin" projectFiles="true">
           <itemPath>src/builtin/console.c</itemPath>
+          <itemPath>src/builtin/network.c</itemPath>
         </logicalFolder>
         <logicalFolder name="escript" displayName="escript" projectFiles="true">
           <itemPath>src/escript/array.c</itemPath>
@@ -137,6 +138,8 @@
       </item>
       <item path="src/builtin/console.c" ex="false" tool="0" flavor2="0">
       </item>
+      <item path="src/builtin/network.c" ex="false" tool="0" flavor2="0">
+      </item>
       <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/array_value.c" ex="false" tool="0" flavor2="0">
@@ -242,6 +245,8 @@
       <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/builtin/console.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/builtin/network.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -351,6 +356,8 @@
       <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="src/builtin/console.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="src/builtin/network.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
       </item>
