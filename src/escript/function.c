@@ -2,10 +2,14 @@
 
 static void * run(void * _self, void * _contexts) {
     void * result = NULL;
+    
+    struct Function * self = _self;
 
 #ifdef VERBOSE
     printf("function ");
 #endif
+    
+    result = self->body->parent.run(self->body, _contexts);
 
     return result;
 }

@@ -8,6 +8,7 @@
     </logicalFolder>
     <logicalFolder name="HeaderFiles" displayName="Headers" projectFiles="true">
       <logicalFolder name="include" displayName="include" projectFiles="true">
+        <itemPath>include/builtin.h</itemPath>
         <itemPath>include/charaters.h</itemPath>
         <itemPath>include/escript.h</itemPath>
         <itemPath>include/oop.h</itemPath>
@@ -28,6 +29,9 @@
     </logicalFolder>
     <logicalFolder name="SourceFiles" displayName="Sources" projectFiles="true">
       <logicalFolder name="src" displayName="src" projectFiles="true">
+        <logicalFolder name="builtin" displayName="builtin" projectFiles="true">
+          <itemPath>src/builtin/console.c</itemPath>
+        </logicalFolder>
         <logicalFolder name="escript" displayName="escript" projectFiles="true">
           <itemPath>src/escript/array.c</itemPath>
           <itemPath>src/escript/array_value.c</itemPath>
@@ -113,6 +117,8 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <item path="include/builtin.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/charaters.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/escript.h" ex="false" tool="3" flavor2="0">
@@ -128,6 +134,8 @@
       <item path="samples/sample2.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/builtin/console.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -215,6 +223,8 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <item path="include/builtin.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/charaters.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/escript.h" ex="false" tool="3" flavor2="0">
@@ -230,6 +240,8 @@
       <item path="samples/sample2.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/builtin/console.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
       </item>
@@ -320,6 +332,8 @@
           <output>${TESTDIR}/TestFiles/f1</output>
         </linkerTool>
       </folder>
+      <item path="include/builtin.h" ex="false" tool="3" flavor2="0">
+      </item>
       <item path="include/charaters.h" ex="false" tool="3" flavor2="0">
       </item>
       <item path="include/escript.h" ex="false" tool="3" flavor2="0">
@@ -335,6 +349,8 @@
       <item path="samples/sample2.e" ex="false" tool="3" flavor2="0">
       </item>
       <item path="samples/sample3.e" ex="false" tool="3" flavor2="0">
+      </item>
+      <item path="src/builtin/console.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="src/escript/array.c" ex="false" tool="0" flavor2="0">
       </item>

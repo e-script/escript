@@ -17,3 +17,5 @@ sum2 = array
 
 This line return result value
 result = a * 5 + array[3] + operators.sum(1, 2)
+
+stdio.printf()

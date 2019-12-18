@@ -7,6 +7,7 @@
 
 #include "oop.h"
 #include "escript.h"
+#include "builtin.h"
 
 int main(int param_count, char ** params) {
     if (param_count == 0) {
@@ -31,8 +32,10 @@ int main(int param_count, char ** params) {
             printf("Run:\n");
 #endif
             struct Stack * contexts = new(Stack);
-            struct NumberValue * result = source->run(source, contexts);
-            printf("result: %d\n", result->value);
+            struct Hash * context = new(Hash);
+            context->set(context, "console", init_stdio());
+            contexts->append(contexts, context);
+            void * result = source->run(source, contexts);
         }
     }
 }

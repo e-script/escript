@@ -91,11 +91,11 @@ static char * getNextToken(void * _self) {
     /* detect token */
     size_t finishOffset = startOffset + 1;
 
-    if (self->value[startOffset] == '\'') {
+    if (self->value[startOffset] == '"') {
         /*string*/
         int escape = 0;
         while (finishOffset < self->length
-                && (self->value[finishOffset] != '\'' || escape == 1)) {
+                && (self->value[finishOffset] != '"' || escape == 1)) {
             if (self->value[finishOffset] == '\\') {
                 escape = 1 - escape;
             } else {
@@ -141,11 +141,11 @@ static char * popNextToken(void * _self) {
     /* detect token */
     size_t newOffset = self->offset + 1;
     
-    if (self->value[self->offset] == '\'') {
+    if (self->value[self->offset] == '"') {
         /*string*/
         int escape = 0;
         while (newOffset < self->length
-                && (self->value[newOffset] != '\'' || escape == 1)) {
+                && (self->value[newOffset] != '"' || escape == 1)) {
             if (self->value[newOffset] == '\\') {
                 escape = 1 - escape;
             } else {

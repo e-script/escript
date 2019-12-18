@@ -35,6 +35,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 
 # Object Files
 OBJECTFILES= \
+	${OBJECTDIR}/src/builtin/console.o \
 	${OBJECTDIR}/src/escript/array.o \
 	${OBJECTDIR}/src/escript/array_value.o \
 	${OBJECTDIR}/src/escript/body.o \
@@ -91,6 +92,11 @@ LDLIBSOPTIONS=
 ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/escript: ${OBJECTFILES}
 	${MKDIR} -p ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}
 	${LINK.c} -o ${CND_DISTDIR}/${CND_CONF}/${CND_PLATFORM}/escript ${OBJECTFILES} ${LDLIBSOPTIONS}
+
+${OBJECTDIR}/src/builtin/console.o: src/builtin/console.c 
+	${MKDIR} -p ${OBJECTDIR}/src/builtin
+	${RM} "$@.d"
+	$(COMPILE.c) -g -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/builtin/console.o src/builtin/console.c
 
 ${OBJECTDIR}/src/escript/array.o: src/escript/array.c 
 	${MKDIR} -p ${OBJECTDIR}/src/escript
@@ -214,6 +220,19 @@ ${TESTDIR}/tests/test_array.o: tests/test_array.c
 	${RM} "$@.d"
 	$(COMPILE.c) -g -Iinclude -I. -std=c89 -MMD -MP -MF "$@.d" -o ${TESTDIR}/tests/test_array.o tests/test_array.c
 
+
+${OBJECTDIR}/src/builtin/console_nomain.o: ${OBJECTDIR}/src/builtin/console.o src/builtin/console.c 
+	${MKDIR} -p ${OBJECTDIR}/src/builtin
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/builtin/console.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -g -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/builtin/console_nomain.o src/builtin/console.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/src/builtin/console.o ${OBJECTDIR}/src/builtin/console_nomain.o;\
+	fi
 
 ${OBJECTDIR}/src/escript/array_nomain.o: ${OBJECTDIR}/src/escript/array.o src/escript/array.c 
 	${MKDIR} -p ${OBJECTDIR}/src/escript

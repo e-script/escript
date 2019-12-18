@@ -96,7 +96,7 @@ static void * run(void * _self, void * _contexts) {
     }
 
     /*run body*/
-    body_result = function->body->parent.run(function->body, _contexts);
+    body_result = function->parent.run(function, _contexts);
 
     result = body_result->values->get(body_result->values, "result");
 
