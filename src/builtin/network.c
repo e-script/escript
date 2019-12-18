@@ -13,10 +13,10 @@ static void * start_listen(void * _self, void * _contexts) {
     struct Stack * contexts = _contexts;
     struct Hash * context;
     struct ArrayValue * params;
-    struct Stack * stack;
     void * param;
     struct NumberValue * port_value;
     struct Function * function_value;
+    struct ArrayValue * array_value;
 
     /*get params*/
     int i;
@@ -113,10 +113,10 @@ static void * start_listen(void * _self, void * _contexts) {
                 }
                 free(buffer);
 
-                stack = new(Stack);
-                stack->append(stack, new(StringValue, request));
+                array_value = new(ArrayValue, new(Stack));
+                array_value->values->append(array_value->values, new(StringValue, request));
                 context = new(Hash);
-                context->set(context, "params", params);
+                context->set(context, "params", array_value);
                 contexts->append(contexts, context);
 
                 struct SetValue * set_value = function_value->parent.run(function_value, contexts);

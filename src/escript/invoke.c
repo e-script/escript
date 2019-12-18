@@ -46,7 +46,6 @@ static void * run(void * _self, void * _contexts) {
     struct Operand * operand;
     void * set_value;
     void * operand_result;
-    struct SetValue * arguments_result;
     struct SetValue * body_result;
     struct Stack * params;
     int i;
@@ -83,11 +82,6 @@ static void * run(void * _self, void * _contexts) {
     context->set(context, "params", new(ArrayValue, params));
     contexts->append(contexts, context);
 
-    arguments_result = function->arguments->parent.run(function->arguments, _contexts);
-
-    context = arguments_result->values;
-    contexts->append(contexts, context);
-
     /*get parent*/
     if (set_value != NULL) {
         context = new(Hash);
@@ -103,7 +97,6 @@ static void * run(void * _self, void * _contexts) {
     if (set_value != NULL) {
         contexts->pop(contexts);
     }
-    contexts->pop(contexts);
     contexts->pop(contexts);
 
     return result;
