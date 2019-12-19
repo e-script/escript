@@ -71,27 +71,55 @@ void * multiply(void * _a, char * operator, void * _b) {
     return result;
 }
 
+static void* add(void * _a, void * _b) {
+    void * result = NULL;
+
+    if (classOf(_a) == NumberValue && classOf(_b) == NumberValue) {
+        struct NumberValue *a, *b;
+        a = _a;
+        b = _b;
+        result = new(NumberValue, a->value + b->value);
+    } else if (classOf(_a) == StringValue && classOf(_b) == StringValue) {
+        struct StringValue * a, *b;
+        a = _a;
+        b = _b;
+        int len_a = strlen(a->value), len_b = strlen(b->value);
+        char * result_string = calloc(sizeof (char), len_a + len_b + 1);
+        memcpy(result_string, a->value, len_a);
+        memcpy(result_string + len_a, b->value, len_b);
+        result = new(StringValue, result_string);
+    } else {
+        fputs("invalid operand for operator '-'", stderr);
+        exit(-1);
+    }
+    return result;
+}
+
+static void * sub(void * _a, void * _b) {
+    void * result = NULL;
+
+    if (classOf(_a) == NumberValue && classOf(_b) == NumberValue) {
+        struct NumberValue *a, *b;
+        a = _a;
+        b = _b;
+        result = new(NumberValue, a->value - b->value);
+    } else {
+        fputs("invalid operand for operator '-'", stderr);
+        exit(-1);
+    }
+    return result;
+}
+
 void * accumulate(void * _a, char * operator, void * _b) {
     void * result = NULL;
 
-    struct NumberValue * numberValueA, * numberValueB;
-
-    if (classOf(_a) == NumberValue) {
-        numberValueA = _a;
-        if (classOf(_b) == NumberValue) {
-            numberValueB = _b;
-            if (strcmp(operator, "+") == 0) {
-                result = new(NumberValue, numberValueA->value + numberValueB->value);
-            } else if (strcmp(operator, "-") == 0) {
-                result = new(NumberValue, numberValueA->value - numberValueB->value);
-            } else {
-                fputs("invalid operator", stderr);
-                exit(-1);
-            }
-        } else {
-            fputs("number expected", stderr);
-            exit(-1);
-        }
+    if (strcmp(operator, "+") == 0) {
+        result = add(_a, _b);
+    } else if (strcmp(operator, "-") == 0) {
+        result = sub(_a, _b);
+    } else {
+        fputs("invalid operator", stderr);
+        exit(-1);
     }
 
     return result;

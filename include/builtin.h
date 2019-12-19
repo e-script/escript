@@ -12,5 +12,7 @@ void * init_console();
 
 void * init_network();
 
+void * init_string();
+
 #endif /* BUILTIN_H */
 

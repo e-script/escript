@@ -35,6 +35,7 @@ int main(int param_count, char ** params) {
             struct Hash * context = new(Hash);
             context->set(context, "console", init_console());
             context->set(context, "network", init_network());
+            context->set(context, "string", init_string());
             contexts->append(contexts, context);
             void * result = source->run(source, contexts);
         }

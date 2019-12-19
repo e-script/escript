@@ -9,7 +9,7 @@ int get_char_type(char c) {
         return CHAR_SPACE;
     }
     if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || (c >= '0' && c <= '9')
-            || (c == '.')) {
+            || (c == '.') || (c == '_')) {
         return CHAR_NAME;
     }
     if (c == '!' || c == '%'

@@ -37,6 +37,7 @@ OBJECTDIR=${CND_BUILDDIR}/${CND_CONF}/${CND_PLATFORM}
 OBJECTFILES= \
 	${OBJECTDIR}/src/builtin/console.o \
 	${OBJECTDIR}/src/builtin/network.o \
+	${OBJECTDIR}/src/builtin/string.o \
 	${OBJECTDIR}/src/escript/array.o \
 	${OBJECTDIR}/src/escript/array_value.o \
 	${OBJECTDIR}/src/escript/body.o \
@@ -103,6 +104,11 @@ ${OBJECTDIR}/src/builtin/network.o: src/builtin/network.c
 	${MKDIR} -p ${OBJECTDIR}/src/builtin
 	${RM} "$@.d"
 	$(COMPILE.c) -O2 -DVERBOSE -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/builtin/network.o src/builtin/network.c
+
+${OBJECTDIR}/src/builtin/string.o: src/builtin/string.c 
+	${MKDIR} -p ${OBJECTDIR}/src/builtin
+	${RM} "$@.d"
+	$(COMPILE.c) -O2 -DVERBOSE -Iinclude -std=c89 -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/builtin/string.o src/builtin/string.c
 
 ${OBJECTDIR}/src/escript/array.o: src/escript/array.c 
 	${MKDIR} -p ${OBJECTDIR}/src/escript
@@ -251,6 +257,19 @@ ${OBJECTDIR}/src/builtin/network_nomain.o: ${OBJECTDIR}/src/builtin/network.o sr
 	    $(COMPILE.c) -O2 -DVERBOSE -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/builtin/network_nomain.o src/builtin/network.c;\
 	else  \
 	    ${CP} ${OBJECTDIR}/src/builtin/network.o ${OBJECTDIR}/src/builtin/network_nomain.o;\
+	fi
+
+${OBJECTDIR}/src/builtin/string_nomain.o: ${OBJECTDIR}/src/builtin/string.o src/builtin/string.c 
+	${MKDIR} -p ${OBJECTDIR}/src/builtin
+	@NMOUTPUT=`${NM} ${OBJECTDIR}/src/builtin/string.o`; \
+	if (echo "$$NMOUTPUT" | ${GREP} '|main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T main$$') || \
+	   (echo "$$NMOUTPUT" | ${GREP} 'T _main$$'); \
+	then  \
+	    ${RM} "$@.d";\
+	    $(COMPILE.c) -O2 -DVERBOSE -Iinclude -std=c89 -Dmain=__nomain -MMD -MP -MF "$@.d" -o ${OBJECTDIR}/src/builtin/string_nomain.o src/builtin/string.c;\
+	else  \
+	    ${CP} ${OBJECTDIR}/src/builtin/string.o ${OBJECTDIR}/src/builtin/string_nomain.o;\
 	fi
 
 ${OBJECTDIR}/src/escript/array_nomain.o: ${OBJECTDIR}/src/escript/array.o src/escript/array.c 
